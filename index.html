@@ -8,7 +8,8 @@
         .box { background: white; padding: 25px; border-radius: 20px; max-width: 400px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; border: none; cursor: pointer; }
-        .hidden-benefit { text-align: right; margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; font-size: 14px; color: #555; display: none; }
+        /* النص الآن ظاهر دائماً */
+        .benefit-box { text-align: right; margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; font-size: 14px; color: #555; display: block; }
     </style>
 </head>
 <body>
@@ -17,14 +18,15 @@
     <h1>رابط واتساب المباشر</h1>
     <input type="text" id="phone1" placeholder="05XXXXXXXX">
     <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
-    <button onclick="showLink()">إنشاء الرابط</button>
+    <button onclick="createLink()">إنشاء الرابط</button>
     
     <div id="linkResult" style="display:none; margin-top:20px;">
         <input type="text" id="finalLink" readonly style="width:100%; padding:8px; text-align:center;">
         <button onclick="copy('finalLink')" style="background:#eee; color:#333; margin-top:10px;">نسخ الرابط</button>
-        <div id="benefit1" class="hidden-benefit" style="display:block;">
-            <p><strong>💡 ليش تستخدم هذا الرابط؟</strong> يختصر عناء حفظ الرقم، ويجعل العميل يتواصل معك فوراً، مما يرفع معدل إتمام الصفقات.</p>
-        </div>
+    </div>
+    
+    <div class="benefit-box">
+        <p><strong>💡 ليش تستخدم هذا الرابط؟</strong> يختصر عناء حفظ الرقم للعميل، ويجعل المحادثة تبدأ بضغطة زر، مما يرفع معدل إتمام صفقاتك واحترافية متجرك.</p>
     </div>
 </div>
 
@@ -32,13 +34,14 @@
     <h1>كود الوصول السريع (QR)</h1>
     <input type="text" id="phone2" placeholder="05XXXXXXXX">
     <input type="text" id="msg2" placeholder="الرسالة التلقائية (اختياري)">
-    <button onclick="showQR()">إنشاء كود QR</button>
+    <button onclick="createQR()">إنشاء كود QR</button>
     
     <div id="qrResult" style="display:none; margin-top:20px;">
         <img id="qrImg" src="" alt="QR Code" style="width:150px; height:150px;">
-        <div id="benefit2" class="hidden-benefit" style="display:block;">
-            <p><strong>💡 ليش تستخدم الـ QR Code؟</strong> هو جسر احترافي بين مطبوعاتك (فواتير/لوحات) وبين واتساب البزنس، ويظهر مشروعك بمظهر تقني متطور.</p>
-        </div>
+    </div>
+    
+    <div class="benefit-box">
+        <p><strong>💡 ليش تستخدم الـ QR Code؟</strong> هو الجسر الأسرع بين عالمك الواقعي (فواتيرك أو كروت عملك) وبين واتساب البزنس. يظهر مشروعك ككيان تقني منظم يسهل الوصول إليه.</p>
     </div>
 </div>
 
@@ -51,12 +54,12 @@
         return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
     }
 
-    function showLink() {
+    function createLink() {
         document.getElementById('finalLink').value = getCleanUrl('phone1', 'msg1');
         document.getElementById('linkResult').style.display = 'block';
     }
 
-    function showQR() {
+    function createQR() {
         let url = getCleanUrl('phone2', 'msg2');
         document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(url);
         document.getElementById('qrResult').style.display = 'block';

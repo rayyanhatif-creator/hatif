@@ -3,50 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أداة التواصل السريع</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { background: #333; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-        .btn-whatsapp { background: #25d366; color: white; padding: 12px; border-radius: 10px; display: block; text-decoration: none; margin-top: 15px; font-weight: bold; }
-    </style>
+    <title>تواصل الواتس للأعمال</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card">
-    <h1>تواصل سريع</h1>
-    <input type="text" id="phone" placeholder="9665xxxxxxxx">
-    <input type="text" id="message" placeholder="الرسالة">
-    <button onclick="generateLink()">إنشاء الرابط</button>
-    
-    <div id="result" style="display:none; margin-top:20px;">
-        <a id="waLink" href="#" target="_blank" class="btn-whatsapp">اضغط للانتقال للواتس</a>
-    </div>
-</div>
+    <main class="container">
+        <section class="card">
+            <h1>تواصل الواتس للأعمال</h1>
+            <input type="text" id="phone" placeholder="رقم الجوال (9665xxxxxxxx)">
+            <input type="text" id="message" placeholder="الرسالة التلقائية (اختياري)">
+            <button onclick="generateLink()">إنشاء الرابط</button>
+            
+            <div id="result" style="display:none; margin-top:20px;">
+                <p>الرابط جاهز:</p>
+                <input type="text" id="finalLink" readonly style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px; text-align:center;">
+                <button onclick="copyLink()" style="background:#f0f0f0; color:#333; margin-bottom:10px;">نسخ الرابط</button>
+                <a id="waLink" href="#" target="_blank" class="btn-whatsapp">اضغط للانتقال للواتس</a>
+            </div>
+        </section>
 
-<script>
-    function generateLink() {
-        let phone = document.getElementById('phone').value.replace(/\D/g, '');
-        const msg = document.getElementById('message').value;
-        
-        if(phone) {
-            // الرابط المباشر بدون تعقيدات
-            let link = "https://wa.me/" + phone;
-            if (msg.trim() !== "") {
-                link += "?text=" + encodeURIComponent(msg);
+        <section class="seo-content">
+            <h2>لماذا التواصل المباشر يرفع من مبيعاتك؟</h2>
+            <p>في عالم البزنس، العميل يحب السهولة. عندما توفر رابطاً مباشراً، أنت تتجاوز أهم عائق: "حفظ الرقم".</p>
+            <ul>
+                <li><strong>سرعة الاستجابة:</strong> العميل يراسلك فوراً دون تأخير.</li>
+                <li><strong>تنظيم الطلبات:</strong> الرسائل التلقائية تسهل عليك تصنيف العملاء.</li>
+                <li><strong>الاحترافية:</strong> الرابط يعكس اهتمامك بتجربة العميل.</li>
+            </ul>
+            <p>استثمر في تواصلك، فكل نقرة هي بداية لعلاقة عمل جديدة.</p>
+        </section>
+    </main>
+
+    <script>
+        function generateLink() {
+            let phone = document.getElementById('phone').value.replace(/\D/g, '');
+            const msg = document.getElementById('message').value;
+            if(phone) {
+                let link = "https://wa.me/" + phone + (msg ? "?text=" + encodeURIComponent(msg) : "");
+                document.getElementById('finalLink').value = link;
+                document.getElementById('waLink').href = link;
+                document.getElementById('result').style.display = 'block';
+            } else {
+                alert("تأكد من كتابة الرقم بدون مسافات أو رموز");
             }
-            
-            const btn = document.getElementById('waLink');
-            btn.href = link;
-            document.getElementById('result').style.display = 'block';
-            
-            // تجربة إضافية: إذا ضغط المستخدم سيفتح الرابط مباشرة
-            console.log("الرابط المولد: " + link);
-        } else {
-            alert("تأكد من كتابة الرقم بدون مسافات أو رموز");
         }
-    }
-</script>
+        function copyLink() {
+            let copyText = document.getElementById("finalLink");
+            copyText.select();
+            document.execCommand("copy");
+            alert("تم نسخ الرابط!");
+        }
+    </script>
 </body>
 </html>

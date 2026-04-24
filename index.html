@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منشئ روابط واتساب | أداة لبزنزك</title>
-    <meta name="description" content="أنشئ رابط واتساب احترافي لبزنزك في ثوانٍ. أداة مجانية وسهلة لتحسين تواصلك مع عملائك.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,26 +11,24 @@
     <main class="container">
         <section class="card">
             <h1>منشئ روابط واتساب</h1>
-            <input type="text" id="phone" placeholder="رقم الجوال (مثال: 9665xxxxxxxx)">
+            <input type="text" id="phone" placeholder="رقم الجوال (مثل: 96650xxxxxxx)">
             <input type="text" id="message" placeholder="اكتب الرسالة التلقائية (اختياري)">
             <button onclick="generateLink()">إنشاء الرابط</button>
             
             <div id="result" style="display:none;">
-                <p style="margin-top: 20px; font-weight: bold;">الرابط جاهز للنسخ:</p>
-                <input type="text" id="finalLink" readonly style="background: #f9f9f9; text-align: center; font-size: 14px;">
+                <p style="margin-top: 20px; font-weight: bold;">انسخ الرابط أدناه:</p>
+                <input type="text" id="finalLink" readonly style="background: #f9f9f9; padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; text-align: center;">
                 <a id="waLink" href="#" target="_blank" class="btn-whatsapp">انتقل إلى واتساب</a>
             </div>
         </section>
 
         <section class="seo-content">
             <h2>أسرار التواصل الناجح في بزنسك</h2>
-            <p>هل تعلم أن سرعة الرد هي المعيار الأول لبناء الثقة مع العميل؟</p>
+            <p>سرعة الرد هي المفتاح لبناء الثقة:</p>
             <ul>
-                <li><strong>الاحترافية:</strong> الرابط المباشر يختصر الخطوات ويجعل عميلك يبدأ المحادثة بضغطة زر.</li>
-                <li><strong>الوضوح:</strong> الرسائل التلقائية تساعدك على تنظيم طلباتك واستفساراتك من اللحظة الأولى.</li>
-                <li><strong>التطوير:</strong> التقنية ليست مجرد أداة، بل هي شريكك في التوسع والنمو.</li>
+                <li><strong>الاحترافية:</strong> الرابط المباشر يغني العميل عن حفظ رقمك.</li>
+                <li><strong>التنظيم:</strong> الرسائل المحددة مسبقاً توفر وقتك.</li>
             </ul>
-            <p>نحن في <strong>أسرة العز</strong> نؤمن بأن كل تفصيل صغير في تواصلك يعكس جودة ما تقدمه.</p>
         </section>
     </main>
 
@@ -41,17 +38,22 @@
 
     <script>
         function generateLink() {
-            let phone = document.getElementById('phone').value.replace(/[^0-9+]/g, '');
+            // إزالة أي مسافات أو رموز + أو غيرها من الرقم
+            let phone = document.getElementById('phone').value.replace(/\D/g, '');
             const msg = document.getElementById('message').value;
             
             if(phone) {
-                const link = msg ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}` : `https://wa.me/${phone}`;
+                // دمج الرسالة بشكل صحيح بدون رموز إضافية
+                let link = `https://wa.me/${phone}`;
+                if (msg.trim() !== "") {
+                    link += `?text=${encodeURIComponent(msg)}`;
+                }
                 
                 document.getElementById('finalLink').value = link;
                 document.getElementById('waLink').href = link;
                 document.getElementById('result').style.display = 'block';
             } else {
-                alert("يرجى إدخال رقم هاتف صحيح");
+                alert("يرجى إدخال رقم جوال صحيح يبدأ بمفتاح الدولة (مثال: 966)");
             }
         }
     </script>

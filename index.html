@@ -8,6 +8,7 @@
         .box { background: white; padding: 25px; border-radius: 20px; max-width: 400px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; border: none; cursor: pointer; }
+        .benefit-box { text-align: right; margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; font-size: 14px; color: #555; }
     </style>
 </head>
 <body>
@@ -18,11 +19,13 @@
     <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
     <button onclick="createLink()">إنشاء الرابط</button>
     
-    <div id="linkResult" style="display:none; margin-top:15px;">
-        <input type="text" id="finalLink" readonly>
-        <button onclick="copy('finalLink')" style="background:#eee; color:#333;">نسخ الرابط</button>
-        <div style="text-align:right; margin-top:15px; font-size:14px; color:#555;">
-            <p><strong>وش تستفيد منه؟</strong> يختصر على العميل عناء حفظ رقمك. العميل يضغط ضغطة واحدة ويفتح محادثة معك مباشرة، مما يسرع إتمام الطلبات ويرفع من احترافية عملك.</p>
+    <div id="linkResult" style="display:none;">
+        <input type="text" id="finalLink" readonly style="margin-top:15px; width:100%; padding:8px;">
+        <button onclick="copy('finalLink')" style="background:#eee; color:#333; margin-top:10px;">نسخ الرابط</button>
+        
+        <div class="benefit-box">
+            <p><strong>💡 ليش تستخدم هذا الرابط؟</strong></p>
+            <p>لأنه يختصر المسافة بينك وبين العميل. بدلاً من إضاعة وقت العميل في حفظ رقمك، الرابط يفتح المحادثة جاهزة بضغطة زر، وهذا يرفع من سرعة إتمام الطلبات ويعطي انطباعاً بجدية عملك.</p>
         </div>
     </div>
 </div>
@@ -33,10 +36,12 @@
     <input type="text" id="msg2" placeholder="الرسالة التلقائية (اختياري)">
     <button onclick="createQR()">إنشاء كود QR</button>
     
-    <div id="qrResult" style="display:none; margin-top:15px;">
-        <img id="qrImg" src="" alt="QR Code" style="width:150px; height:150px;">
-        <div style="text-align:right; margin-top:15px; font-size:14px; color:#555;">
-            <p><strong>وش تستفيد منه؟</strong> هو الجسر بين عالمك الواقعي (فواتير، كروت عمل، لوحة محل) وعالمك الرقمي. العميل يمسح الكود بجواله وتفتح المحادثة جاهزة، مما يعطيك انطباعاً بأنك مشروع مواكب للتقنية وسهل التعامل معه.</p>
+    <div id="qrResult" style="display:none;">
+        <img id="qrImg" src="" alt="QR Code" style="margin-top:15px; width:150px; height:150px;">
+        
+        <div class="benefit-box">
+            <p><strong>💡 ليش تستخدم الـ QR Code؟</strong></p>
+            <p>هو جسرك الذكي لربط العالم الواقعي بالرقمي. طباعته على لوحة المحل أو الفواتير تعني أن عميلك يوصلك فوراً بمجرد مسحه بالكاميرا. إنه أداة "احترافية" تظهر أن مشروعك متطور تقنياً ويهتم بتسهيل تجربة العميل.</p>
         </div>
     </div>
 </div>

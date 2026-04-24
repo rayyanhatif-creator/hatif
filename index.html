@@ -9,7 +9,7 @@
         body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; line-height: 1.6; }
         .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; margin: auto; text-align: center; }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; margin-top: 10px; }
+        button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; margin-top: 10px; border: none; }
         .section-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         #qrcode { display: flex; justify-content: center; margin-top: 20px; }
     </style>
@@ -25,22 +25,23 @@
 
 <div id="result" class="section-box" style="display:none;">
     <h3>الرابط الخاص بك:</h3>
-    <input type="text" id="finalLink" readonly style="width:100%; text-align:center; padding:10px;">
-    <button onclick="copyLink()">نسخ الرابط</button>
-    <a id="waLink" href="#" target="_blank" style="display:block; margin-top:10px; color:#25d366; font-weight:bold;">الانتقال للواتس</a>
+    <input type="text" id="finalLink" readonly style="width:100%; text-align:center; padding:10px; border:1px solid #ddd; border-radius:5px;">
+    <button onclick="copyLink()" style="background:#f0f0f0; color:#333; margin-top:10px;">نسخ الرابط</button>
+    <a id="waLink" href="#" target="_blank" style="display:block; margin-top:10px; color:#25d366; font-weight:bold; text-decoration:none;">الانتقال للواتس</a>
     
-    <p style="margin-top:20px; font-size: 0.9rem;"><strong>عن هذا الرابط:</strong> هذا الرابط هو "بوابة رقمية" توصل العميل مباشرة بمحادثة واتساب معك، دون الحاجة لحفظ الرقم، مما يرفع من سرعة إتمام أي عملية تجارية.</p>
+    <p style="margin-top:20px; font-size: 0.9rem;"><strong>عن هذا الرابط:</strong> هذا الرابط هو "بوابة رقمية" توصل العميل مباشرة بمحادثة واتساب معك، دون الحاجة لحفظ الرقم، مما يرفع من سرعة إتمام أي عملية تجارية لبزنسك.</p>
 </div>
 
 <div id="qr-section" class="section-box" style="display:none;">
     <h3>كود الوصول السريع (QR Code):</h3>
     <div id="qrcode"></div>
-    <p style="margin-top:15px; font-size: 0.9rem;"><strong>لماذا تستخدم الـ QR Code؟</strong> هو أداة ربط بين العالم الواقعي والرقمي؛ يمكنك طباعته على فواتيرك، لوحة محلك، أو كروت العمل، ليمسحه العميل بجواله ويبدأ المحادثة فوراً.</p>
+    <p style="margin-top:15px; font-size: 0.9rem;"><strong>لماذا تستخدم الـ QR Code؟</strong> هو الجسر بين عالمك الواقعي والرقمي؛ يمكنك طباعته على الفواتير أو لوحة المحل أو كروت العمل، ليمسحه العميل بجواله ويبدأ المحادثة معك فوراً دون جهد.</p>
 </div>
 
 <script>
     function generateLink() {
         let rawPhone = document.getElementById('phone').value.replace(/\D/g, '');
+        // إصلاح الرقم تلقائياً ليقبل 9665
         let phone = rawPhone.startsWith('0') ? '966' + rawPhone.substring(1) : (rawPhone.length === 9 ? '966' + rawPhone : rawPhone);
         const msg = document.getElementById('message').value;
         
@@ -48,19 +49,22 @@
             let link = "https://wa.me/" + phone + (msg.trim() ? "?text=" + encodeURIComponent(msg) : "");
             document.getElementById('finalLink').value = link;
             document.getElementById('waLink').href = link;
+            
+            // إظهار الأقسام
             document.getElementById('result').style.display = 'block';
             document.getElementById('qr-section').style.display = 'block';
             
+            // توليد الـ QR
             document.getElementById("qrcode").innerHTML = "";
             new QRCode(document.getElementById("qrcode"), { text: link, width: 150, height: 150 });
         } else {
-            alert("تأكد من كتابة الرقم بشكل صحيح");
+            alert("تأكد من كتابة الرقم بشكل صحيح (مثال: 055xxxxxxx)");
         }
     }
     function copyLink() {
         document.getElementById("finalLink").select();
         document.execCommand("copy");
-        alert("تم النسخ!");
+        alert("تم نسخ الرابط!");
     }
 </script>
 </body>

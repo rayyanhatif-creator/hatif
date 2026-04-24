@@ -3,37 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منشئ روابط واتساب</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { background: #25d366; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-        #result { margin-top: 20px; padding: 10px; background: #eee; border-radius: 10px; display: none; word-break: break-all; }
-    </style>
+    <title>منشئ روابط واتساب للأعمال | أداة مجانية لأصحاب المتاجر في السعودية</title>
+    <meta name="description" content="قم بإنشاء رابط واتساب مباشر لعملك التجاري في ثوانٍ. أداة مجانية وسهلة لأصحاب المتاجر والمشاريع في الرياض لتسهيل التواصل مع العملاء وزيادة المبيعات.">
+    <meta name="keywords" content="رابط واتساب, إنشاء رابط واتساب, واتساب بيزنس, أدوات تجارية, تسويق رقمي, متاجر الرياض">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card">
-    <h2>منشئ روابط الواتساب</h2>
-    <input type="text" id="phone" placeholder="رقم الجوال (مثال: 9665xxxxxxxx)">
-    <button onclick="generateLink()">إنشاء الرابط</button>
-    <div id="result"></div>
-</div>
+    <main class="container">
+        <h1>منشئ روابط واتساب للأعمال</h1>
+        
+        <section class="card">
+            <input type="text" id="phone" placeholder="رقم الجوال (مثال: 9665xxxxxxxx)">
+            <button onclick="generateLink()">إنشاء الرابط</button>
+            <div id="result"></div>
+        </section>
 
-<script>
-    function generateLink() {
-        const phone = document.getElementById('phone').value;
-        if(phone) {
-            const link = `https://wa.me/${phone}`;
-            const resDiv = document.getElementById('result');
-            resDiv.innerHTML = `رابطك جاهز:<br><a href="${link}" target="_blank">${link}</a>`;
-            resDiv.style.display = 'block';
+        <section class="seo-content">
+            <h2>لماذا تحتاج لرابط واتساب لمتجرك؟</h2>
+            <p>في عالم التجارة الإلكترونية، كل ثانية تفرق. استخدام رابط مباشر يختصر على عميلك خطوة حفظ الرقم، مما يزيد من احتمالية إتمام عملية البيع بسرعة.</p>
             
-            // هنا يمكنك إضافة كود يرسل الرقم إلى قاعدة بيانات أو n8n لتعرف من استخدم الأداة
-            console.log("تم إنشاء رابط لرقم: " + phone);
+            <h2>كيف نساعد أصحاب المشاريع؟</h2>
+            <p>تساعد أداتنا أصحاب المشاريع والشركات في السعودية على تسهيل التواصل مع عملائهم من خلال إنشاء روابط مباشرة للواتساب. لا حاجة لحفظ الأرقام، فقط اضغط وتحدث مباشرة مع المتجر. هذه الأداة مقدمة لدعم أصحاب المتاجر في الرياض وخارجها.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة لأسرة العز © 2026</p>
+    </footer>
+
+    <script>
+        function generateLink() {
+            const phone = document.getElementById('phone').value;
+            if(phone) {
+                const link = `https://wa.me/${phone}`;
+                const resDiv = document.getElementById('result');
+                resDiv.innerHTML = `<p>رابطك جاهز:<br><a href="${link}" target="_blank">${link}</a></p>`;
+                resDiv.style.display = 'block';
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منشئ روابط واتساب | أداة لبزنزك</title>
+    <meta name="description" content="أنشئ رابط واتساب احترافي لبزنزك في ثوانٍ. أداة مجانية وسهلة لتحسين تواصلك مع عملائك.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,12 +15,23 @@
             <input type="text" id="phone" placeholder="رقم الجوال (مثال: 9665xxxxxxxx)">
             <input type="text" id="message" placeholder="اكتب الرسالة التلقائية (اختياري)">
             <button onclick="generateLink()">إنشاء الرابط</button>
-            <div id="result"></div>
+            
+            <div id="result" style="display:none;">
+                <p style="margin-top: 20px; font-weight: bold;">الرابط جاهز للنسخ:</p>
+                <input type="text" id="finalLink" readonly style="background: #f9f9f9; text-align: center; font-size: 14px;">
+                <a id="waLink" href="#" target="_blank" class="btn-whatsapp">انتقل إلى واتساب</a>
+            </div>
         </section>
 
         <section class="seo-content">
-            <h2>طور تواصلك في بزنزك</h2>
-            <p>تسهل هذه الأداة على عملائك التواصل معك مباشرة. فقط أدخل رقمك والرسالة التي ترغب باستقبالها، واحصل على رابط احترافي لعملك.</p>
+            <h2>أسرار التواصل الناجح في بزنسك</h2>
+            <p>هل تعلم أن سرعة الرد هي المعيار الأول لبناء الثقة مع العميل؟</p>
+            <ul>
+                <li><strong>الاحترافية:</strong> الرابط المباشر يختصر الخطوات ويجعل عميلك يبدأ المحادثة بضغطة زر.</li>
+                <li><strong>الوضوح:</strong> الرسائل التلقائية تساعدك على تنظيم طلباتك واستفساراتك من اللحظة الأولى.</li>
+                <li><strong>التطوير:</strong> التقنية ليست مجرد أداة، بل هي شريكك في التوسع والنمو.</li>
+            </ul>
+            <p>نحن في <strong>أسرة العز</strong> نؤمن بأن كل تفصيل صغير في تواصلك يعكس جودة ما تقدمه.</p>
         </section>
     </main>
 
@@ -29,22 +41,17 @@
 
     <script>
         function generateLink() {
-            const phone = document.getElementById('phone').value;
+            let phone = document.getElementById('phone').value.replace(/[^0-9+]/g, '');
             const msg = document.getElementById('message').value;
             
             if(phone) {
-                // دمج الرسالة في الرابط
-                const encodedMsg = encodeURIComponent(msg);
-                const link = msg ? `https://wa.me/${phone}?text=${encodedMsg}` : `https://wa.me/${phone}`;
+                const link = msg ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}` : `https://wa.me/${phone}`;
                 
-                const resDiv = document.getElementById('result');
-                resDiv.innerHTML = `
-                    <p style="margin-top: 20px;">الرابط جاهز للاستخدام:</p>
-                    <a href="${link}" target="_blank" style="background: #25d366; color: white; padding: 10px 20px; border-radius: 10px; display: inline-block; text-decoration: none; margin-top: 10px;">
-                        انتقل إلى واتساب
-                    </a>
-                `;
-                resDiv.style.display = 'block';
+                document.getElementById('finalLink').value = link;
+                document.getElementById('waLink').href = link;
+                document.getElementById('result').style.display = 'block';
+            } else {
+                alert("يرجى إدخال رقم هاتف صحيح");
             }
         }
     </script>

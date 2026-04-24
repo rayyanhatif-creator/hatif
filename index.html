@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منشئ روابط واتساب | أداة مجانية وسريعة</title>
-    <meta name="description" content="قم بإنشاء رابط واتساب مباشر لعملك التجاري في ثوانٍ. أداة مجانية وسهلة لأصحاب المتاجر والمشاريع لتسهيل التواصل مع العملاء.">
+    <title>منشئ روابط واتساب | أداة لبزنزك</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,16 +12,14 @@
         <section class="card">
             <h1>منشئ روابط واتساب</h1>
             <input type="text" id="phone" placeholder="رقم الجوال (مثال: 9665xxxxxxxx)">
+            <input type="text" id="message" placeholder="اكتب الرسالة التلقائية (اختياري)">
             <button onclick="generateLink()">إنشاء الرابط</button>
             <div id="result"></div>
         </section>
 
         <section class="seo-content">
-            <h2>لماذا تحتاج لرابط واتساب لمتجرك؟</h2>
-            <p>في عالم التجارة الإلكترونية، كل ثانية تفرق. استخدام رابط مباشر يختصر على عميلك خطوة حفظ الرقم، مما يزيد من احتمالية إتمام عملية البيع بسرعة.</p>
-            
-            <h2>كيف نساعد أصحاب المشاريع؟</h2>
-            <p>تساعد أداتنا أصحاب المشاريع والشركات في السعودية على تسهيل التواصل مع عملائهم من خلال إنشاء روابط مباشرة للواتساب. لا حاجة لحفظ الأرقام، فقط اضغط وتحدث مباشرة مع المتجر.</p>
+            <h2>طور تواصلك في بزنزك</h2>
+            <p>تسهل هذه الأداة على عملائك التواصل معك مباشرة. فقط أدخل رقمك والرسالة التي ترغب باستقبالها، واحصل على رابط احترافي لعملك.</p>
         </section>
     </main>
 
@@ -33,13 +30,18 @@
     <script>
         function generateLink() {
             const phone = document.getElementById('phone').value;
+            const msg = document.getElementById('message').value;
+            
             if(phone) {
-                const link = `https://wa.me/${phone}`;
+                // دمج الرسالة في الرابط
+                const encodedMsg = encodeURIComponent(msg);
+                const link = msg ? `https://wa.me/${phone}?text=${encodedMsg}` : `https://wa.me/${phone}`;
+                
                 const resDiv = document.getElementById('result');
                 resDiv.innerHTML = `
-                    <p style="margin-top: 15px;">رابطك جاهز:</p>
-                    <a href="${link}" target="_blank" style="color: #25d366; font-weight: bold; text-decoration: none; display: block; margin-top: 5px;">
-                        اضغط هنا لفتح الرابط
+                    <p style="margin-top: 20px;">الرابط جاهز للاستخدام:</p>
+                    <a href="${link}" target="_blank" style="background: #25d366; color: white; padding: 10px 20px; border-radius: 10px; display: inline-block; text-decoration: none; margin-top: 10px;">
+                        انتقل إلى واتساب
                     </a>
                 `;
                 resDiv.style.display = 'block';

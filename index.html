@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>تواصل الواتس للأعمال</title>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; }
-        .card { background: white; padding: 20px; border-radius: 20px; max-width: 400px; margin: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; border: none; cursor: pointer; }
-        .section-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; text-align: right; }
+        body { font-family: sans-serif; background-color: #f9f9f9; padding: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 20px; max-width: 400px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        button { background: #222; color: #fff; padding: 12px; width: 100%; border-radius: 8px; border: none; cursor: pointer; }
+        .box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; border: 1px solid #eee; text-align: right; }
     </style>
 </head>
 <body>
@@ -17,50 +17,40 @@
     <h1>تواصل الواتس للأعمال</h1>
     <input type="text" id="phone" placeholder="05XXXXXXXX">
     <input type="text" id="message" placeholder="الرسالة التلقائية">
-    <button onclick="generateLink()">إنشاء الرابط</button>
+    <button onclick="go()">إنشاء</button>
 </div>
 
-<div id="result" class="section-box" style="display:none;">
-    <h3>الرابط المباشر:</h3>
-    <input type="text" id="finalLink" readonly style="width:100%; text-align:center; padding:10px;">
-    <button onclick="copyLink()" style="background:#f0f0f0; color:#333; margin-top:10px;">نسخ الرابط</button>
-    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">
-        <p><strong>لماذا هذا الرابط؟</strong> يحول عميلك من مشاهد إلى محادث في ثانية، دون حفظ رقم، مما يرفع المبيعات.</p>
-    </div>
+<div id="res" class="box" style="display:none;">
+    <h3>الرابط:</h3>
+    <input type="text" id="linkBox" readonly style="width:100%; padding:8px;">
+    <button onclick="copy()" style="background:#eee; color:#333; margin-top:10px;">نسخ</button>
+    <p style="font-size:14px; margin-top:15px;"><strong>لماذا هذا الرابط؟</strong> يسهل على عميلك الوصول إليك فوراً دون عناء حفظ الرقم.</p>
 </div>
 
-<div id="qr-section" class="section-box" style="display:none;">
-    <h3>كود الوصول السريع (QR):</h3>
-    <div id="qrcode" style="text-align:center; margin-top:10px;"></div>
-    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">
-        <p><strong>فكرة الـ QR:</strong> هو جسر بين عالمك الواقعي (كروت، لوحات) والرقمي.</p>
-        <p><strong>لماذا نستخدمه؟</strong> يزيل عوائق الكتابة؛ العميل يمسح الكود وتفتح المحادثة جاهزة، مما يعطيك انطباعاً بالاحترافية العالية.</p>
-    </div>
+<div id="qrBox" class="box" style="display:none; text-align:center;">
+    <h3>كود الوصول (QR):</h3>
+    <img id="qrImg" src="" alt="QR Code" style="margin-top:10px;">
+    <p style="font-size:14px; margin-top:15px; text-align:right;"><strong>لماذا الـ QR؟</strong> هو جسر تقني لطباعته على فواتيرك، يختصر الوقت ويظهر عملك بمظهر احترافي تقني.</p>
 </div>
 
 <script>
-    function generateLink() {
-        let rawPhone = document.getElementById('phone').value.replace(/\D/g, '');
-        let phone = rawPhone.startsWith('0') ? '966' + rawPhone.substring(1) : (rawPhone.length === 9 ? '966' + rawPhone : rawPhone);
-        const msg = document.getElementById('message').value;
+    function go() {
+        let p = document.getElementById('phone').value.replace(/\D/g, '');
+        if(p.startsWith('0')) p = '966' + p.substring(1);
+        else if(p.length === 9) p = '966' + p;
         
-        if(phone.length >= 9) {
-            let link = "https://wa.me/" + phone + (msg.trim() ? "?text=" + encodeURIComponent(msg) : "");
-            document.getElementById('finalLink').value = link;
-            document.getElementById('result').style.display = 'block';
-            document.getElementById('qr-section').style.display = 'block';
-            
-            // توليد كود الـ QR باستخدام خدمة جوجل (مضمونة ومباشرة)
-            let qrUrl = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=" + encodeURIComponent(link);
-            document.getElementById("qrcode").innerHTML = '<img src="' + qrUrl + '">';
-        } else {
-            alert("تأكد من كتابة الرقم بشكل صحيح");
-        }
+        let m = document.getElementById('message').value;
+        let url = "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
+        
+        document.getElementById('linkBox').value = url;
+        document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(url);
+        
+        document.getElementById('res').style.display = 'block';
+        document.getElementById('qrBox').style.display = 'block';
     }
-    function copyLink() {
-        document.getElementById("finalLink").select();
+    function copy() {
+        document.getElementById("linkBox").select();
         document.execCommand("copy");
-        alert("تم النسخ!");
     }
 </script>
 </body>

@@ -19,10 +19,11 @@
     <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
     <button onclick="createLink()">إنشاء الرابط</button>
     <div id="linkResult" style="display:none;">
-        <input type="text" id="finalLink" readonly style="margin-top:15px; width:100%; padding:8px;">
+        <input type="text" id="finalLink" readonly style="margin-top:15px; width:100%; padding:8px; text-align:center;">
         <button onclick="copy('finalLink')" style="background:#eee; color:#333; margin-top:10px;">نسخ الرابط</button>
+        <a id="waBtn" href="#" target="_blank" style="display:block; margin-top:10px; color:#25d366; font-weight:bold;">جرب الرابط الآن</a>
         <div class="benefit-box">
-            <p><strong>💡 ليش تستخدم هذا الرابط؟</strong> يختصر عناء حفظ الرقم، ويجعل العميل يتواصل معك فوراً، مما يرفع معدل إتمام الصفقات.</p>
+            <p><strong>💡 الفائدة:</strong> يختصر عناء حفظ الرقم، ويجعل العميل يتواصل معك فوراً، مما يرفع معدل المبيعات.</p>
         </div>
     </div>
 </div>
@@ -35,30 +36,31 @@
     <div id="qrResult" style="display:none;">
         <img id="qrImg" src="" alt="QR Code" style="margin-top:15px; width:150px; height:150px;">
         <div class="benefit-box">
-            <p><strong>💡 ليش تستخدم الـ QR Code؟</strong> هو جسر احترافي بين مطبوعاتك (فواتير/لوحات) وبين واتساب البزنس، ويظهر مشروعك بمظهر تقني متطور.</p>
+            <p><strong>💡 الفائدة:</strong> جسر احترافي بين مطبوعاتك (فواتير/لوحات) وبين واتساب البزنس. يظهر مشروعك بمظهر تقني متطور ويسهل على العميل الوصول إليك بمسح الكود فقط.</p>
         </div>
     </div>
 </div>
 
 <script>
-    // الدالة المحسنة لبناء الرابط
-    function buildUrl(idPhone, idMsg) {
+    function getCleanUrl(idPhone, idMsg) {
         let p = document.getElementById(idPhone).value.replace(/\D/g, '');
         if (p.startsWith('0')) p = '966' + p.substring(1);
         else if (p.length === 9) p = '966' + p;
         
         let m = document.getElementById(idMsg).value;
-        // استخدام الصيغة الرسمية للأعمال التي لا يرفضها واتساب
-        return "https://api.whatsapp.com/send/?phone=" + p + "&text=" + encodeURIComponent(m) + "&app_absent=0";
+        // نستخدم الصيغة الأكثر استقراراً في العالم: wa.me
+        return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
     }
 
     function createLink() {
-        document.getElementById('finalLink').value = buildUrl('phone1', 'msg1');
+        let url = getCleanUrl('phone1', 'msg1');
+        document.getElementById('finalLink').value = url;
+        document.getElementById('waBtn').href = url;
         document.getElementById('linkResult').style.display = 'block';
     }
 
     function createQR() {
-        let url = buildUrl('phone2', 'msg2');
+        let url = getCleanUrl('phone2', 'msg2');
         document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(url);
         document.getElementById('qrResult').style.display = 'block';
     }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تواصل الواتس للأعمال</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <style>
         body { font-family: sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
         .container { width: 100%; max-width: 400px; }
@@ -12,8 +12,7 @@
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         button { background: #333; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; font-size: 16px; margin-top: 10px; }
         .btn-whatsapp { background: #25d366; color: white; padding: 12px; border-radius: 10px; display: block; text-decoration: none; margin-top: 10px; font-weight: bold; }
-        .seo-content { margin-top: 30px; color: #555; text-align: right; background: #fff; padding: 20px; border-radius: 15px; }
-        #qrcode { display: flex; justify-content: center; margin-top: 20px; }
+        #qrcode { margin: 20px auto; width: 150px; height: 150px; }
     </style>
 </head>
 <body>
@@ -21,51 +20,32 @@
 <main class="container">
     <section class="card">
         <h1>تواصل الواتس للأعمال</h1>
-        <input type="text" id="phone" placeholder="رقم الجوال (مثل: 05XXXXXXXX)">
+        <input type="text" id="phone" placeholder="رقم الجوال (05XXXXXXXX)">
         <input type="text" id="message" placeholder="الرسالة التلقائية (اختياري)">
-        <button onclick="generateLink()">إنشاء الرابط</button>
+        <button onclick="generateLink()">إنشاء الرابط والكود</button>
         
         <div id="result" style="display:none; margin-top:20px;">
-            <p style="font-weight: bold;">الرابط:</p>
-            <input type="text" id="finalLink" readonly style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px; text-align:center;">
+            <input type="text" id="finalLink" readonly style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; text-align:center;">
             <button onclick="copyLink()">نسخ الرابط</button>
             <a id="waLink" href="#" target="_blank" class="btn-whatsapp">الانتقال للواتس</a>
-            
-            <p style="margin-top:20px; font-weight: bold;">كود الوصول السريع (QR):</p>
             <div id="qrcode"></div>
         </div>
-    </section>
-
-    <section class="seo-content">
-        <h2>لماذا التواصل المباشر يرفع من مبيعاتك؟</h2>
-        <p>في عالم البزنس، العميل يحب السهولة. الرابط المباشر يختصر "حفظ الرقم".</p>
-        <ul>
-            <li><strong>سرعة الاستجابة:</strong> العميل يراسلك فوراً.</li>
-            <li><strong>تنظيم الطلبات:</strong> الرسائل التلقائية تسهل تصنيف العملاء.</li>
-            <li><strong>الاحترافية:</strong> الرابط يعكس اهتمامك بالتفاصيل.</li>
-        </ul>
     </section>
 </main>
 
 <script>
     function generateLink() {
         let rawPhone = document.getElementById('phone').value.replace(/\D/g, '');
-        let phone = rawPhone;
-        
-        if (phone.startsWith('0')) {
-            phone = '966' + phone.substring(1);
-        } else if (phone.length === 9) {
-            phone = '966' + phone;
-        }
-
+        let phone = rawPhone.startsWith('0') ? '966' + rawPhone.substring(1) : (rawPhone.length === 9 ? '966' + rawPhone : rawPhone);
         const msg = document.getElementById('message').value;
+        
         if(phone.length >= 9) {
             let link = "https://wa.me/" + phone + (msg.trim() ? "?text=" + encodeURIComponent(msg) : "");
             document.getElementById('finalLink').value = link;
             document.getElementById('waLink').href = link;
             document.getElementById('result').style.display = 'block';
             
-            // توليد كود الـ QR
+            // توليد الـ QR
             document.getElementById("qrcode").innerHTML = "";
             new QRCode(document.getElementById("qrcode"), {
                 text: link,
@@ -73,14 +53,13 @@
                 height: 150
             });
         } else {
-            alert("يرجى التأكد من كتابة الرقم بشكل صحيح");
+            alert("تأكد من رقم الجوال");
         }
     }
     function copyLink() {
-        let copyText = document.getElementById("finalLink");
-        copyText.select();
+        document.getElementById("finalLink").select();
         document.execCommand("copy");
-        alert("تم نسخ الرابط!");
+        alert("تم النسخ!");
     }
 </script>
 </body>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>تواصل الواتس للأعمال</title>
     <style>
-        body { font-family: sans-serif; background-color: #f9f9f9; padding: 20px; text-align: center; }
-        .card { background: white; padding: 20px; border-radius: 20px; max-width: 400px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        button { background: #222; color: #fff; padding: 12px; width: 100%; border-radius: 8px; border: none; cursor: pointer; }
-        .box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; border: 1px solid #eee; text-align: right; }
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 20px; max-width: 400px; margin: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; border: none; cursor: pointer; }
+        .section-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
@@ -16,25 +16,32 @@
 <div class="card">
     <h1>تواصل الواتس للأعمال</h1>
     <input type="text" id="phone" placeholder="05XXXXXXXX">
-    <input type="text" id="message" placeholder="الرسالة التلقائية">
-    <button onclick="go()">إنشاء</button>
+    <input type="text" id="message" placeholder="الرسالة التلقائية (اختياري)">
+    <button onclick="generate()">إنشاء الرابط</button>
 </div>
 
-<div id="res" class="box" style="display:none;">
-    <h3>الرابط:</h3>
-    <input type="text" id="linkBox" readonly style="width:100%; padding:8px;">
-    <button onclick="copy()" style="background:#eee; color:#333; margin-top:10px;">نسخ</button>
-    <p style="font-size:14px; margin-top:15px;"><strong>لماذا هذا الرابط؟</strong> يسهل على عميلك الوصول إليك فوراً دون عناء حفظ الرقم.</p>
+<div id="result" class="section-box" style="display:none;">
+    <h3>الرابط الخاص بك:</h3>
+    <input type="text" id="linkBox" readonly style="width:100%; padding:8px; border:1px solid #ddd;">
+    <button onclick="copy()" style="background:#eee; color:#333; margin-top:10px;">نسخ الرابط</button>
+    
+    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">
+        <p><strong>لماذا هذا الرابط؟</strong> أنت كصاحب عمل، وقتك ثمين. هذا الرابط يختصر على عميلك عملية "حفظ الرقم" الطويلة، ويحول المحادثة من "مجرد استفسار" إلى "عملية تجارية" بضغطة زر واحدة.</p>
+    </div>
 </div>
 
-<div id="qrBox" class="box" style="display:none; text-align:center;">
-    <h3>كود الوصول (QR):</h3>
-    <img id="qrImg" src="" alt="QR Code" style="margin-top:10px;">
-    <p style="font-size:14px; margin-top:15px; text-align:right;"><strong>لماذا الـ QR؟</strong> هو جسر تقني لطباعته على فواتيرك، يختصر الوقت ويظهر عملك بمظهر احترافي تقني.</p>
+<div id="qrBox" class="section-box" style="display:none; text-align:center;">
+    <h3>كود الوصول السريع (QR Code):</h3>
+    <img id="qrImg" src="" alt="QR Code" style="margin-top:10px; width:150px; height:150px;">
+    
+    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px; text-align:right;">
+        <p><strong>ما فكرة الـ QR Code؟</strong> هو جسر تقني يربط عالمك الواقعي (كروت العمل، الفواتير، لوحة المحل) بعالمك الرقمي (واتساب البزنس).</p>
+        <p><strong>لماذا تستخدمه؟</strong> لأن العميل في المحل أو المكتب لا يملك وقت لكتابة أرقام، مسح الكود يعني فتح المحادثة فوراً. هذا يعطي انطباعاً بأنك مشروع محترف ومواكب للتقنية.</p>
+    </div>
 </div>
 
 <script>
-    function go() {
+    function generate() {
         let p = document.getElementById('phone').value.replace(/\D/g, '');
         if(p.startsWith('0')) p = '966' + p.substring(1);
         else if(p.length === 9) p = '966' + p;
@@ -45,12 +52,13 @@
         document.getElementById('linkBox').value = url;
         document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(url);
         
-        document.getElementById('res').style.display = 'block';
+        document.getElementById('result').style.display = 'block';
         document.getElementById('qrBox').style.display = 'block';
     }
     function copy() {
         document.getElementById("linkBox").select();
         document.execCommand("copy");
+        alert("تم نسخ الرابط!");
     }
 </script>
 </body>

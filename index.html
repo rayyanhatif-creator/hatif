@@ -2,63 +2,71 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تواصل الواتس للأعمال</title>
+    <title>أدوات تواصل البزنس</title>
     <style>
         body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; }
-        .card { background: white; padding: 20px; border-radius: 20px; max-width: 400px; margin: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .box { background: white; padding: 25px; border-radius: 20px; max-width: 400px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; border: none; cursor: pointer; }
-        .section-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>تواصل الواتس للأعمال</h1>
-    <input type="text" id="phone" placeholder="05XXXXXXXX">
-    <input type="text" id="message" placeholder="الرسالة التلقائية (اختياري)">
-    <button onclick="generate()">إنشاء الرابط</button>
-</div>
-
-<div id="result" class="section-box" style="display:none;">
-    <h3>الرابط الخاص بك:</h3>
-    <input type="text" id="linkBox" readonly style="width:100%; padding:8px; border:1px solid #ddd;">
-    <button onclick="copy()" style="background:#eee; color:#333; margin-top:10px;">نسخ الرابط</button>
+<div class="box">
+    <h1>رابط واتساب المباشر</h1>
+    <input type="text" id="phone1" placeholder="05XXXXXXXX">
+    <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
+    <button onclick="createLink()">إنشاء الرابط</button>
     
-    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">
-        <p><strong>لماذا هذا الرابط؟</strong> أنت كصاحب عمل، وقتك ثمين. هذا الرابط يختصر على عميلك عملية "حفظ الرقم" الطويلة، ويحول المحادثة من "مجرد استفسار" إلى "عملية تجارية" بضغطة زر واحدة.</p>
+    <div id="linkResult" style="display:none; margin-top:15px;">
+        <input type="text" id="finalLink" readonly>
+        <button onclick="copy('finalLink')" style="background:#eee; color:#333;">نسخ الرابط</button>
+        <div style="text-align:right; margin-top:15px; font-size:14px; color:#555;">
+            <p><strong>وش تستفيد منه؟</strong> يختصر على العميل عناء حفظ رقمك. العميل يضغط ضغطة واحدة ويفتح محادثة معك مباشرة، مما يسرع إتمام الطلبات ويرفع من احترافية عملك.</p>
+        </div>
     </div>
 </div>
 
-<div id="qrBox" class="section-box" style="display:none; text-align:center;">
-    <h3>كود الوصول السريع (QR Code):</h3>
-    <img id="qrImg" src="" alt="QR Code" style="margin-top:10px; width:150px; height:150px;">
+<div class="box">
+    <h1>كود الوصول السريع (QR)</h1>
+    <input type="text" id="phone2" placeholder="05XXXXXXXX">
+    <input type="text" id="msg2" placeholder="الرسالة التلقائية (اختياري)">
+    <button onclick="createQR()">إنشاء كود QR</button>
     
-    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px; text-align:right;">
-        <p><strong>ما فكرة الـ QR Code؟</strong> هو جسر تقني يربط عالمك الواقعي (كروت العمل، الفواتير، لوحة المحل) بعالمك الرقمي (واتساب البزنس).</p>
-        <p><strong>لماذا تستخدمه؟</strong> لأن العميل في المحل أو المكتب لا يملك وقت لكتابة أرقام، مسح الكود يعني فتح المحادثة فوراً. هذا يعطي انطباعاً بأنك مشروع محترف ومواكب للتقنية.</p>
+    <div id="qrResult" style="display:none; margin-top:15px;">
+        <img id="qrImg" src="" alt="QR Code" style="width:150px; height:150px;">
+        <div style="text-align:right; margin-top:15px; font-size:14px; color:#555;">
+            <p><strong>وش تستفيد منه؟</strong> هو الجسر بين عالمك الواقعي (فواتير، كروت عمل، لوحة محل) وعالمك الرقمي. العميل يمسح الكود بجواله وتفتح المحادثة جاهزة، مما يعطيك انطباعاً بأنك مشروع مواكب للتقنية وسهل التعامل معه.</p>
+        </div>
     </div>
 </div>
 
 <script>
-    function generate() {
-        let p = document.getElementById('phone').value.replace(/\D/g, '');
-        if(p.startsWith('0')) p = '966' + p.substring(1);
-        else if(p.length === 9) p = '966' + p;
-        
-        let m = document.getElementById('message').value;
-        let url = "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
-        
-        document.getElementById('linkBox').value = url;
-        document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(url);
-        
-        document.getElementById('result').style.display = 'block';
-        document.getElementById('qrBox').style.display = 'block';
+    function getCleanPhone(id) {
+        let p = document.getElementById(id).value.replace(/\D/g, '');
+        return p.startsWith('0') ? '966' + p.substring(1) : (p.length === 9 ? '966' + p : p);
     }
-    function copy() {
-        document.getElementById("linkBox").select();
+
+    function createLink() {
+        let p = getCleanPhone('phone1');
+        let m = document.getElementById('msg1').value;
+        let url = "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
+        document.getElementById('finalLink').value = url;
+        document.getElementById('linkResult').style.display = 'block';
+    }
+
+    function createQR() {
+        let p = getCleanPhone('phone2');
+        let m = document.getElementById('msg2').value;
+        let url = "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
+        document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(url);
+        document.getElementById('qrResult').style.display = 'block';
+    }
+
+    function copy(id) {
+        document.getElementById(id).select();
         document.execCommand("copy");
-        alert("تم نسخ الرابط!");
+        alert("تم النسخ!");
     }
 </script>
 </body>

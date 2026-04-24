@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منشئ روابط واتساب للأعمال | أداة مجانية لأصحاب المتاجر في السعودية</title>
-    <meta name="description" content="قم بإنشاء رابط واتساب مباشر لعملك التجاري في ثوانٍ. أداة مجانية وسهلة لأصحاب المتاجر والمشاريع في الرياض لتسهيل التواصل مع العملاء وزيادة المبيعات.">
-    <meta name="keywords" content="رابط واتساب, إنشاء رابط واتساب, واتساب بيزنس, أدوات تجارية, تسويق رقمي, متاجر الرياض">
+    <title>منشئ روابط واتساب | أداة مجانية وسريعة</title>
+    <meta name="description" content="قم بإنشاء رابط واتساب مباشر لعملك التجاري في ثوانٍ. أداة مجانية وسهلة لأصحاب المتاجر والمشاريع لتسهيل التواصل مع العملاء.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <main class="container">
-        <h1>منشئ روابط واتساب للأعمال</h1>
-        
         <section class="card">
+            <h1>منشئ روابط واتساب</h1>
             <input type="text" id="phone" placeholder="رقم الجوال (مثال: 9665xxxxxxxx)">
             <button onclick="generateLink()">إنشاء الرابط</button>
             <div id="result"></div>
@@ -24,7 +22,7 @@
             <p>في عالم التجارة الإلكترونية، كل ثانية تفرق. استخدام رابط مباشر يختصر على عميلك خطوة حفظ الرقم، مما يزيد من احتمالية إتمام عملية البيع بسرعة.</p>
             
             <h2>كيف نساعد أصحاب المشاريع؟</h2>
-            <p>تساعد أداتنا أصحاب المشاريع والشركات في السعودية على تسهيل التواصل مع عملائهم من خلال إنشاء روابط مباشرة للواتساب. لا حاجة لحفظ الأرقام، فقط اضغط وتحدث مباشرة مع المتجر. هذه الأداة مقدمة لدعم أصحاب المتاجر في الرياض وخارجها.</p>
+            <p>تساعد أداتنا أصحاب المشاريع والشركات في السعودية على تسهيل التواصل مع عملائهم من خلال إنشاء روابط مباشرة للواتساب. لا حاجة لحفظ الأرقام، فقط اضغط وتحدث مباشرة مع المتجر.</p>
         </section>
     </main>
 
@@ -38,7 +36,12 @@
             if(phone) {
                 const link = `https://wa.me/${phone}`;
                 const resDiv = document.getElementById('result');
-                resDiv.innerHTML = `<p>رابطك جاهز:<br><a href="${link}" target="_blank">${link}</a></p>`;
+                resDiv.innerHTML = `
+                    <p style="margin-top: 15px;">رابطك جاهز:</p>
+                    <a href="${link}" target="_blank" style="color: #25d366; font-weight: bold; text-decoration: none; display: block; margin-top: 5px;">
+                        اضغط هنا لفتح الرابط
+                    </a>
+                `;
                 resDiv.style.display = 'block';
             }
         }

@@ -24,41 +24,41 @@
 </div>
 
 <div id="result" class="section-box" style="display:none;">
-    <h3>الرابط الخاص بك:</h3>
+    <h3>الرابط المباشر لبزنسك:</h3>
     <input type="text" id="finalLink" readonly style="width:100%; text-align:center; padding:10px; border:1px solid #ddd; border-radius:5px;">
     <button onclick="copyLink()" style="background:#f0f0f0; color:#333; margin-top:10px;">نسخ الرابط</button>
-    <a id="waLink" href="#" target="_blank" style="display:block; margin-top:10px; color:#25d366; font-weight:bold; text-decoration:none;">الانتقال للواتس</a>
     
-    <p style="margin-top:20px; font-size: 0.9rem;"><strong>عن هذا الرابط:</strong> هذا الرابط هو "بوابة رقمية" توصل العميل مباشرة بمحادثة واتساب معك، دون الحاجة لحفظ الرقم، مما يرفع من سرعة إتمام أي عملية تجارية لبزنسك.</p>
+    <div style="margin-top:20px; padding-top:20px; border-top: 1px solid #eee;">
+        <p><strong>لماذا هذا الرابط؟</strong> أنت كصاحب عمل، وقتك ثمين. هذا الرابط يحول عميلك من "مشاهد" إلى "محادث" في ثانية واحدة، بدون أن يضطر لتسجيل رقمك، مما يزيد من معدل التحويل (Conversion Rate) لمتجرك بشكل ملحوظ.</p>
+    </div>
 </div>
 
 <div id="qr-section" class="section-box" style="display:none;">
     <h3>كود الوصول السريع (QR Code):</h3>
     <div id="qrcode"></div>
-    <p style="margin-top:15px; font-size: 0.9rem;"><strong>لماذا تستخدم الـ QR Code؟</strong> هو الجسر بين عالمك الواقعي والرقمي؛ يمكنك طباعته على الفواتير أو لوحة المحل أو كروت العمل، ليمسحه العميل بجواله ويبدأ المحادثة معك فوراً دون جهد.</p>
+    
+    <div style="margin-top:20px; padding-top:20px; border-top: 1px solid #eee;">
+        <p><strong>ما هي فكرة الـ QR Code؟</strong> هو الجسر التقني الذي يربط عالمك المادي (مثل كرت العمل، فواتيرك، لوحة المحل) بعالمك الرقمي (واتساب البزنس الخاص بك).</p>
+        <p><strong>لماذا تستخدمه؟</strong> لأنه يزيل أي عائق تقني؛ العميل لا يحتاج لكتابة أي شيء، فقط يوجه كاميرا جواله، فتفتح المحادثة جاهزة. هذا النوع من الاحترافية يعطي انطباعاً فورياً للعميل بأنك تتعامل مع عملك بجدية وتقنية عالية.</p>
+    </div>
 </div>
 
 <script>
     function generateLink() {
         let rawPhone = document.getElementById('phone').value.replace(/\D/g, '');
-        // إصلاح الرقم تلقائياً ليقبل 9665
         let phone = rawPhone.startsWith('0') ? '966' + rawPhone.substring(1) : (rawPhone.length === 9 ? '966' + rawPhone : rawPhone);
         const msg = document.getElementById('message').value;
         
         if(phone.length >= 9) {
             let link = "https://wa.me/" + phone + (msg.trim() ? "?text=" + encodeURIComponent(msg) : "");
             document.getElementById('finalLink').value = link;
-            document.getElementById('waLink').href = link;
-            
-            // إظهار الأقسام
             document.getElementById('result').style.display = 'block';
             document.getElementById('qr-section').style.display = 'block';
             
-            // توليد الـ QR
             document.getElementById("qrcode").innerHTML = "";
             new QRCode(document.getElementById("qrcode"), { text: link, width: 150, height: 150 });
         } else {
-            alert("تأكد من كتابة الرقم بشكل صحيح (مثال: 055xxxxxxx)");
+            alert("تأكد من كتابة الرقم بشكل صحيح");
         }
     }
     function copyLink() {

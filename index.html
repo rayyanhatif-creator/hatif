@@ -2,16 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تواصل الواتس للأعمال</title>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; line-height: 1.6; }
-        .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; margin: auto; text-align: center; }
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 20px; max-width: 400px; margin: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; margin-top: 10px; border: none; }
-        .section-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        #qrcode { display: flex; justify-content: center; margin-top: 20px; }
+        button { background: #333; color: white; padding: 12px; width: 100%; border-radius: 10px; border: none; cursor: pointer; }
+        .section-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; max-width: 400px; margin: 20px auto; text-align: right; }
     </style>
 </head>
 <body>
@@ -19,27 +16,25 @@
 <div class="card">
     <h1>تواصل الواتس للأعمال</h1>
     <input type="text" id="phone" placeholder="05XXXXXXXX">
-    <input type="text" id="message" placeholder="الرسالة التلقائية (اختياري)">
+    <input type="text" id="message" placeholder="الرسالة التلقائية">
     <button onclick="generateLink()">إنشاء الرابط</button>
 </div>
 
 <div id="result" class="section-box" style="display:none;">
-    <h3>الرابط المباشر لبزنسك:</h3>
-    <input type="text" id="finalLink" readonly style="width:100%; text-align:center; padding:10px; border:1px solid #ddd; border-radius:5px;">
+    <h3>الرابط المباشر:</h3>
+    <input type="text" id="finalLink" readonly style="width:100%; text-align:center; padding:10px;">
     <button onclick="copyLink()" style="background:#f0f0f0; color:#333; margin-top:10px;">نسخ الرابط</button>
-    
-    <div style="margin-top:20px; padding-top:20px; border-top: 1px solid #eee;">
-        <p><strong>لماذا هذا الرابط؟</strong> أنت كصاحب عمل، وقتك ثمين. هذا الرابط يحول عميلك من "مشاهد" إلى "محادث" في ثانية واحدة، بدون أن يضطر لتسجيل رقمك، مما يزيد من معدل التحويل (Conversion Rate) لمتجرك بشكل ملحوظ.</p>
+    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">
+        <p><strong>لماذا هذا الرابط؟</strong> يحول عميلك من مشاهد إلى محادث في ثانية، دون حفظ رقم، مما يرفع المبيعات.</p>
     </div>
 </div>
 
 <div id="qr-section" class="section-box" style="display:none;">
-    <h3>كود الوصول السريع (QR Code):</h3>
-    <div id="qrcode"></div>
-    
-    <div style="margin-top:20px; padding-top:20px; border-top: 1px solid #eee;">
-        <p><strong>ما هي فكرة الـ QR Code؟</strong> هو الجسر التقني الذي يربط عالمك المادي (مثل كرت العمل، فواتيرك، لوحة المحل) بعالمك الرقمي (واتساب البزنس الخاص بك).</p>
-        <p><strong>لماذا تستخدمه؟</strong> لأنه يزيل أي عائق تقني؛ العميل لا يحتاج لكتابة أي شيء، فقط يوجه كاميرا جواله، فتفتح المحادثة جاهزة. هذا النوع من الاحترافية يعطي انطباعاً فورياً للعميل بأنك تتعامل مع عملك بجدية وتقنية عالية.</p>
+    <h3>كود الوصول السريع (QR):</h3>
+    <div id="qrcode" style="text-align:center; margin-top:10px;"></div>
+    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">
+        <p><strong>فكرة الـ QR:</strong> هو جسر بين عالمك الواقعي (كروت، لوحات) والرقمي.</p>
+        <p><strong>لماذا نستخدمه؟</strong> يزيل عوائق الكتابة؛ العميل يمسح الكود وتفتح المحادثة جاهزة، مما يعطيك انطباعاً بالاحترافية العالية.</p>
     </div>
 </div>
 
@@ -55,8 +50,9 @@
             document.getElementById('result').style.display = 'block';
             document.getElementById('qr-section').style.display = 'block';
             
-            document.getElementById("qrcode").innerHTML = "";
-            new QRCode(document.getElementById("qrcode"), { text: link, width: 150, height: 150 });
+            // توليد كود الـ QR باستخدام خدمة جوجل (مضمونة ومباشرة)
+            let qrUrl = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=" + encodeURIComponent(link);
+            document.getElementById("qrcode").innerHTML = '<img src="' + qrUrl + '">';
         } else {
             alert("تأكد من كتابة الرقم بشكل صحيح");
         }
@@ -64,7 +60,7 @@
     function copyLink() {
         document.getElementById("finalLink").select();
         document.execCommand("copy");
-        alert("تم نسخ الرابط!");
+        alert("تم النسخ!");
     }
 </script>
 </body>

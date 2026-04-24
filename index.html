@@ -2,60 +2,42 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أدوات تواصل البزنس</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 30px; text-align: center; }
-        .box { background: white; padding: 40px; border-radius: 25px; max-width: 500px; margin: 40px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 15px; margin: 15px 0; border: 2px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 16px; }
-        button { background: #333; color: white; padding: 15px; width: 100%; border-radius: 12px; border: none; cursor: pointer; font-size: 18px; font-weight: bold; }
-        
-        /* تنسيق النصوص المكبر والمفصول */
-        .benefit-box { 
-            text-align: right; 
-            margin-top: 40px; 
-            padding-top: 30px; 
-            border-top: 2px solid #f0f0f0; 
-            font-size: 18px; 
-            line-height: 1.8; 
-            color: #444; 
-        }
-        h1 { font-size: 28px; margin-bottom: 20px; }
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 15px; text-align: center; margin: 0; }
+        .box { background: white; padding: 25px; border-radius: 20px; max-width: 90%; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 16px; }
+        button { background: #333; color: white; padding: 15px; width: 100%; border-radius: 12px; border: none; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .benefit-box { text-align: right; margin-top: 30px; padding-top: 20px; border-top: 2px solid #f0f0f0; font-size: 16px; line-height: 1.6; color: #444; }
+        #qrDisplay { display: flex; justify-content: center; margin-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="box">
     <h1>رابط واتساب المباشر</h1>
-    <input type="text" id="phone1" placeholder="05XXXXXXXX">
-    <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
+    <input type="text" id="phone1" placeholder="رقم الجوال (05XXXXXXXX)">
+    <input type="text" id="msg1" placeholder="الرسالة التلقائية">
     <button onclick="createLink()">إنشاء الرابط</button>
-    
-    <div id="linkResult" style="display:none; margin-top:25px;">
-        <input type="text" id="finalLink" readonly style="width:100%; padding:12px; text-align:center; font-size:16px;">
-        <button onclick="copy('finalLink')" style="background:#eee; color:#333; margin-top:15px;">نسخ الرابط</button>
+    <div id="linkResult" style="display:none; margin-top:20px;">
+        <input type="text" id="finalLink" readonly style="width:100%; padding:10px; text-align:center;">
+        <button onclick="copy('finalLink')" style="background:#eee; color:#333;">نسخ الرابط</button>
     </div>
-    
     <div class="benefit-box">
-        <p><strong>💡 لماذا يجب عليك استخدام هذا الرابط؟</strong></p>
-        <p>في عالم البزنس اليوم، <strong>الوقت هو العملة الأغلى</strong>. عندما تجبر العميل على حفظ رقمك يدوياً ثم إضافته، أنت تضع "عائقاً" يقلل من احتمالية تواصله معك. هذا الرابط يزيل كل تلك الحواجز، ويحول العميل من مجرد "مشاهد" إلى "محادث" بضغطة زر واحدة فقط.</p>
-        <p>استخدامك لهذا الرابط الاحترافي يرسل رسالة مبطنة للعميل بأنك تقدر وقته، وأنك منظمة تقنياً، مما يزيد من معدلات تحويل العملاء (Conversion Rate) بشكل مذهل مقارنة بالطرق التقليدية.</p>
+        <p><strong>💡 لماذا هذا الرابط؟</strong> أنت في عالم البزنس تحتاج السرعة. هذا الرابط يزيل حاجز "حفظ الرقم"، ويخلي العميل يبدأ المحادثة بضغطة زر. تخيل كم صفقة ضاعت بسبب تعقيد بسيط! هذا الرابط يضمن أن العميل يصلك بأقل جهد ممكن، مما يرفع ثقة العميل في احترافيتك.</p>
     </div>
 </div>
 
 <div class="box">
     <h1>كود الوصول السريع (QR)</h1>
-    <input type="text" id="phone2" placeholder="05XXXXXXXX">
-    <input type="text" id="msg2" placeholder="الرسالة التلقائية (اختياري)">
+    <input type="text" id="phone2" placeholder="رقم الجوال (05XXXXXXXX)">
+    <input type="text" id="msg2" placeholder="الرسالة التلقائية">
     <button onclick="createQR()">إنشاء كود QR</button>
-    
-    <div id="qrResult" style="display:none; margin-top:25px;">
-        <img id="qrImg" src="" alt="QR Code" style="width:200px; height:200px; border-radius:10px;">
-    </div>
-    
+    <div id="qrDisplay"></div>
     <div class="benefit-box">
-        <p><strong>💡 ما هي القيمة الحقيقية لـ QR Code في متجرك؟</strong></p>
-        <p>كود الـ QR ليس مجرد صورة، بل هو <strong>الجسر الرقمي</strong> الذي يربط عالمك المادي الملموس بواتساب البزنس الخاص بك. تخيل وضع هذا الكود على فواتيرك، كروت العمل، أو حتى لوحة محلك؛ العميل لا يحتاج لكتابة حرف واحد!</p>
-        <p>بمجرد توجيه كاميرا الجوال للكود، تُفتح المحادثة جاهزة بالرسالة التي حددتها مسبقاً. هذا المستوى من السلاسة يضفي طابعاً من الاحترافية العالية ويظهر مشروعك ككيان تقني متطور يهتم بأدق تفاصيل تجربة المستخدم.</p>
+        <p><strong>💡 لماذا الـ QR Code؟</strong> هو الجسر الرقمي الذي يربط محلك الواقعي بواتساب البزنس. تخيل لوحة محلك أو كرت عملك؛ بدل ما يكتب العميل رقمك، يمسح الكود وتفتح المحادثة جاهزة. هذا ليس مجرد تقنية، بل هو "تجربة عميل" (User Experience) مريحة جداً تضعك في مستوى الشركات الكبرى.</p>
     </div>
 </div>
 
@@ -67,15 +49,19 @@
         let m = document.getElementById(idMsg).value;
         return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
     }
+
     function createLink() {
         document.getElementById('finalLink').value = getCleanUrl('phone1', 'msg1');
         document.getElementById('linkResult').style.display = 'block';
     }
+
     function createQR() {
         let url = getCleanUrl('phone2', 'msg2');
-        document.getElementById('qrImg').src = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=" + encodeURIComponent(url);
-        document.getElementById('qrResult').style.display = 'block';
+        let qrContainer = document.getElementById("qrDisplay");
+        qrContainer.innerHTML = ""; // مسح الكود القديم
+        new QRCode(qrContainer, { text: url, width: 200, height: 200 });
     }
+
     function copy(id) {
         document.getElementById(id).select();
         document.execCommand("copy");

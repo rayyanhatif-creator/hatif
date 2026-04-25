@@ -3,80 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هاتف للأعمال</title>
+    <title>أدوات تواصل البزنس</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
+        /* تصميم يحاكي موقع هاتف تماماً */
         body { 
-            background-color: #f0f2f5; 
-            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f8f9fa; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             display: flex; flex-direction: column; align-items: center; 
             padding: 40px 20px; margin: 0; 
         }
         .box { 
-            background-color: #1a1d23; /* لون هاتف الغامق */
-            color: #ffffff; 
-            padding: 40px; 
+            background-color: #ffffff; 
+            padding: 35px; 
             border-radius: 20px; 
             width: 100%; 
-            max-width: 500px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 450px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
         }
-        h1 { font-size: 22px; margin-bottom: 15px; color: #ffffff; text-align: center; }
-        p { color: #b0b3b8; font-size: 14px; line-height: 1.6; text-align: center; margin-bottom: 20px; }
+        h1 { font-size: 24px; margin-bottom: 20px; color: #000000; font-weight: 700; text-align: center; }
+        p { color: #666; font-size: 14px; line-height: 1.7; margin-bottom: 20px; text-align: center; }
+        
         input { 
-            width: 100%; padding: 15px; margin-bottom: 15px; 
-            background-color: #2b3038; border: 1px solid #3e444e; 
-            border-radius: 8px; color: white; box-sizing: border-box; 
+            width: 100%; padding: 14px; margin-bottom: 12px; 
+            border: 1px solid #e1e1e1; border-radius: 12px; 
+            box-sizing: border-box; font-size: 15px;
         }
+        
         button { 
-            width: 100%; padding: 15px; background-color: #2b3038; 
-            border: 1px solid #3e444e; border-radius: 8px; color: white; 
-            cursor: pointer; font-weight: bold; font-size: 15px;
+            width: 100%; padding: 14px; background-color: #000000; 
+            border: none; border-radius: 12px; color: #ffffff; 
+            cursor: pointer; font-size: 16px; font-weight: 600;
+            transition: background 0.2s;
         }
-        #qrDisplay { display: flex; justify-content: center; margin-top: 20px; background: white; padding: 10px; border-radius: 8px; }
-        .link-area { margin-top: 20px; text-align: center; display: none; }
+        button:hover { background-color: #333; }
+        
+        #qrDisplay { display: flex; justify-content: center; margin-top: 20px; }
+        .link-area { margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h1>رابط واتساب للأعمال (نسخة هاتف)</h1>
-    <p>صمم هذا الرابط المباشر لمساعدة أصحاب الأعمال والشركات في تحويل العملاء من مجرد مشاهدين إلى عملاء حقيقيين يتواصلون معك بلمسة واحدة. إزالة حواجز حفظ الرقم هي الخطوة الأولى نحو مبيعات أكثر فاعلية.</p>
+    <h1>رابط واتساب المباشر</h1>
+    <p>أداة احترافية لتحويل عملائك من مشاهدين إلى متواصلين بلمسة واحدة.</p>
     <input type="text" id="phone1" placeholder="رقم الجوال (05XXXXXXXX)">
-    <button onclick="genLink()">إنشاء رابط واتساب للأعمال</button>
+    <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
+    <button onclick="genLink()">إنشاء الرابط</button>
     
     <div id="linkArea" class="link-area">
-        <input type="text" id="finalLink" readonly style="background:transparent; border:none; color:#00ffcc; text-align:center;">
-        <button onclick="copyLink()" style="background:#3e444e; margin-top:10px;">نسخ الرابط</button>
+        <input type="text" id="finalLink" readonly style="text-align:center;">
+        <button onclick="copyLink()" style="background:#555;">نسخ الرابط</button>
     </div>
 </div>
 
 <div class="box">
-    <h1>كود الوصول السريع (QR للأعمال)</h1>
-    <p>حوّل كروت عملك، مطبوعاتك، وحتى واجهة محلك إلى قنوات بيع مباشرة. العميل لا يحتاج الآن لحفظ رقمك أو كتابته، مسح كود الـ QR من هاتفه كفيل بفتح محادثة واتساب للأعمال جاهزة.</p>
+    <h1>كود الوصول السريع (QR)</h1>
+    <p>سهّل على عملائك الوصول إليك عبر مسح الكود مباشرة من مطبوعاتك أو واجهة محلك.</p>
     <input type="text" id="phone2" placeholder="رقم الجوال (05XXXXXXXX)">
-    <button onclick="genQR()">إنشاء كود QR للأعمال</button>
+    <input type="text" id="msg2" placeholder="الرسالة التلقائية (اختياري)">
+    <button onclick="genQR()">إنشاء كود QR</button>
     
-    <div id="qrDisplay" style="display:none;"></div>
+    <div id="qrDisplay"></div>
 </div>
 
 <script>
-    function getWaLink(pId) {
+    function getWaLink(pId, mId) {
         let p = document.getElementById(pId).value.replace(/\D/g, '');
         if (p.startsWith('0')) p = '966' + p.substring(1);
         else if (p.length === 9) p = '966' + p;
-        return "https://wa.me/" + p;
+        let m = document.getElementById(mId).value;
+        return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
     }
     function genLink() {
-        document.getElementById('finalLink').value = getWaLink('phone1');
+        document.getElementById('finalLink').value = getWaLink('phone1', 'msg1');
         document.getElementById('linkArea').style.display = 'block';
     }
     function genQR() {
         let container = document.getElementById("qrDisplay");
-        container.style.display = 'flex';
         container.innerHTML = "";
-        new QRCode(container, { text: getWaLink('phone2'), width: 160, height: 160 });
+        new QRCode(container, { text: getWaLink('phone2', 'msg2'), width: 180, height: 180 });
     }
     function copyLink() {
         let el = document.getElementById('finalLink');

@@ -4,251 +4,88 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أدوات واتساب بزنس</title>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f7f6;
-    color: #111;
-}
-
-/* الهيدر */
-.header {
-    text-align: center;
-    padding: 50px 20px;
-}
-.header h1 {
-    font-size: 34px;
-}
-.header span {
-    color: #10b981;
-}
-.header p {
-    color: #666;
-}
-
-/* الكونتينر */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    width: 320px;
-    padding: 25px;
-    border-radius: 20px;
-    border: 1px solid #e5e7eb;
-
-    /* 🔥 هذا هو الظل الصحيح */
-    box-shadow: 
-        0px 15px 0px #d1d5db,   /* ظل سفلي واضح */
-        0px 15px 35px rgba(0,0,0,0.08);
-
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-
-    box-shadow: 
-        0px 20px 0px #d1d5db,
-        0px 20px 40px rgba(0,0,0,0.1);
-}
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 
-        0 20px 40px rgba(0,0,0,0.12),
-        0 8px 20px rgba(0,0,0,0.06);
-}
-
-.card h2 {
-    margin-bottom: 10px;
-}
-
-.card p {
-    color: #555;
-    font-size: 14px;
-}
-
-/* الحقول */
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 12px;
-    box-sizing: border-box;
-}
-
-/* الأزرار */
-button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    background: #10b981;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-button:hover {
-    background: #059669;
-}
-
-/* الرابط */
-.result-link input {
-    text-align: center;
-    color: #10b981;
-    font-weight: bold;
-    background: #f9f9f9;
-}
-
-/* QR */
-#qrDisplay {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-/* قسم الفوائد */
-.features {
-    padding: 50px 20px;
-    text-align: center;
-}
-.features h2 {
-    font-size: 28px;
-    margin-bottom: 30px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.feature {
-    background: white;
-    color: #111;
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid #e5e7eb;
-
-    /* نفس الظل للكروت الصغيرة */
-    box-shadow: 
-        0 10px 25px rgba(0,0,0,0.08),
-        0 4px 10px rgba(0,0,0,0.04);
-
-    transition: 0.3s;
-}
-
-.feature:hover {
-    transform: translateY(-6px);
-}
-
-.icon {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f7f6; color: #111; }
+    .header { text-align: center; padding: 50px 20px; }
+    .header h1 { font-size: 34px; }
+    .header span { color: #10b981; }
+    .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 20px; }
+    
+    .card {
+        background: white; width: 320px; padding: 25px; border-radius: 20px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0px 10px 0px #d1d5db, 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+    }
+    
+    input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e5e7eb; margin-bottom: 12px; box-sizing: border-box; }
+    button { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #10b981; color: white; font-weight: bold; cursor: pointer; }
+    button:hover { background: #059669; }
+    
+    #qrDisplay { display: flex; justify-content: center; margin-top: 15px; }
+    #finalLink { width: 100%; padding: 10px; text-align: center; color: #10b981; font-weight: bold; background: #f9f9f9; border: 1px solid #e5e7eb; border-radius: 10px; margin-top: 10px; }
 </style>
 </head>
 
 <body>
 
-<!-- الهيدر -->
 <div class="header">
     <h1>🚀 أدوات <span>واتساب بزنس</span></h1>
-    <p>حوّل عملائك من مشاهدة إلى تواصل مباشر خلال ثواني</p>
+    <p>حوّل عملائك من مشاهدة إلى تواصل مباشر</p>
 </div>
 
-<!-- الأدوات -->
 <div class="container">
-
     <div class="card">
         <h2>📲 رابط واتساب</h2>
-
         <input type="text" id="phone1" placeholder="05XXXXXXXX">
         <input type="text" id="msg1" placeholder="اكتب رسالة (اختياري)">
         <button onclick="genLink()">إنشاء الرابط</button>
-
-        <div id="linkArea" style="display:none; margin-top:15px;">
+        <div id="linkArea" style="display:none;">
             <input type="text" id="finalLink" readonly>
         </div>
     </div>
 
     <div class="card">
         <h2>🔳 كود QR</h2>
-
         <input type="text" id="phone2" placeholder="05XXXXXXXX">
         <input type="text" id="msg2" placeholder="اكتب رسالة (اختياري)">
         <button onclick="genQR()">إنشاء QR</button>
-
         <div id="qrDisplay"></div>
-    </div>
-
-</div>
-
-<!-- الفوائد -->
-<div class="features">
-    <h2>وش فايدته؟</h2>
-
-    <div class="features-grid">
-
-        <div class="feature">
-            <div class="icon">📞</div>
-            <h3>تواصل أسرع</h3>
-            <p>العميل يوصلك مباشرة بدون ما يحفظ رقمك</p>
-        </div>
-
-        <div class="feature">
-            <div class="icon">⚡</div>
-            <h3>تحويل أعلى</h3>
-            <p>كل ضغطة تتحول لمحادثة حقيقية</p>
-        </div>
-
-        <div class="feature">
-            <div class="icon">📊</div>
-            <h3>احترافية</h3>
-            <p>يعطي مشروعك شكل قوي قدام العملاء</p>
-        </div>
-
-        <div class="feature">
-            <div class="icon">🔗</div>
-            <h3>سهل المشاركة</h3>
-            <p>تقدر تحطه بأي مكان</p>
-        </div>
-
     </div>
 </div>
 
 <script>
 function getWaLink(pId, mId) {
     let p = document.getElementById(pId).value.replace(/\D/g, '');
-    if (p.startsWith('0')) p = '966' + p.substring(1);
-    else if (p.length === 9) p = '966' + p;
-
-    let m = document.getElementById(mId).value;
-    return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
+    // تصحيح صيغة الرقم (إضافة 966)
+    if (p.startsWith('0')) {
+        p = '966' + p.substring(1);
+    } else if (p.length === 9) {
+        p = '966' + p;
+    }
+    
+    let m = document.getElementById(mId).value.trim();
+    // بناء الرابط بشكل آمن
+    let url = "https://wa.me/" + p;
+    if (m !== "") {
+        url += "?text=" + encodeURIComponent(m);
+    }
+    return url;
 }
 
 function genLink() {
-    document.getElementById('finalLink').value = getWaLink('phone1','msg1');
+    let link = getWaLink('phone1', 'msg1');
+    document.getElementById('finalLink').value = link;
     document.getElementById('linkArea').style.display = 'block';
 }
 
 function genQR() {
     let container = document.getElementById("qrDisplay");
     container.innerHTML = "";
+    let url = getWaLink('phone2', 'msg2');
     new QRCode(container, {
-        text: getWaLink('phone2','msg2'),
+        text: url,
         width: 150,
         height: 150
     });

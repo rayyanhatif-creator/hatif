@@ -2,96 +2,61 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أدوات تواصل البزنس</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        /* تصميم يحاكي موقع هاتف تماماً */
-        body { 
-            background-color: #f8f9fa; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; flex-direction: column; align-items: center; 
-            padding: 40px 20px; margin: 0; 
-        }
-        .box { 
-            background-color: #ffffff; 
-            padding: 35px; 
-            border-radius: 20px; 
-            width: 100%; 
-            max-width: 450px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            border: 1px solid #f0f0f0;
-        }
-        h1 { font-size: 24px; margin-bottom: 20px; color: #000000; font-weight: 700; text-align: center; }
-        p { color: #666; font-size: 14px; line-height: 1.7; margin-bottom: 20px; text-align: center; }
+        body { background-color: #f7f7f7; font-family: sans-serif; padding: 40px; display: flex; flex-direction: column; align-items: center; }
         
-        input { 
-            width: 100%; padding: 14px; margin-bottom: 12px; 
-            border: 1px solid #e1e1e1; border-radius: 12px; 
-            box-sizing: border-box; font-size: 15px;
+        /* تصميم البطاقة المطابق لهاتف */
+        .card {
+            background: white;
+            border: 2px solid #000; /* الإطار الأسود السميك */
+            border-radius: 24px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
+            box-shadow: 8px 8px 0px #000; /* الظل الخاص بالموقع */
+            text-align: center;
         }
-        
-        button { 
-            width: 100%; padding: 14px; background-color: #000000; 
-            border: none; border-radius: 12px; color: #ffffff; 
-            cursor: pointer; font-size: 16px; font-weight: 600;
-            transition: background 0.2s;
+
+        h2 { font-size: 20px; margin-bottom: 15px; }
+        p { color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+
+        /* ستايل "وش فايدتها" */
+        .benefit-box {
+            background: #eafff0; /* لون أخضر فاتح جداً */
+            border: 1px solid #000;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: right;
+            margin-top: 15px;
         }
-        button:hover { background-color: #333; }
-        
-        #qrDisplay { display: flex; justify-content: center; margin-top: 20px; }
-        .link-area { margin-top: 20px; display: none; }
+        .benefit-title { font-weight: bold; margin-bottom: 10px; display: block; }
     </style>
 </head>
 <body>
 
-<div class="box">
-    <h1>رابط واتساب المباشر</h1>
-    <p>أداة احترافية لتحويل عملائك من مشاهدين إلى متواصلين بلمسة واحدة.</p>
-    <input type="text" id="phone1" placeholder="رقم الجوال (05XXXXXXXX)">
-    <input type="text" id="msg1" placeholder="الرسالة التلقائية (اختياري)">
-    <button onclick="genLink()">إنشاء الرابط</button>
-    
-    <div id="linkArea" class="link-area">
-        <input type="text" id="finalLink" readonly style="text-align:center;">
-        <button onclick="copyLink()" style="background:#555;">نسخ الرابط</button>
+    <div class="card">
+        <h2>رابط واتساب المباشر</h2>
+        <input type="text" placeholder="05XXXXXXXX" style="width:100%; padding:12px; margin-bottom:10px;">
+        <button style="width:100%; padding:12px; background:#000; color:#fff; border-radius:8px;">إنشاء الرابط</button>
+        
+        <div class="benefit-box">
+            <span class="benefit-title">💡 وش فايدتها؟</span>
+            هذا الرابط يختصر عناء حفظ الرقم على العميل، ويجعل المحادثة تبدأ بضغطة زر، مما يرفع معدل إتمام صفقاتك.
+        </div>
     </div>
-</div>
 
-<div class="box">
-    <h1>كود الوصول السريع (QR)</h1>
-    <p>سهّل على عملائك الوصول إليك عبر مسح الكود مباشرة من مطبوعاتك أو واجهة محلك.</p>
-    <input type="text" id="phone2" placeholder="رقم الجوال (05XXXXXXXX)">
-    <input type="text" id="msg2" placeholder="الرسالة التلقائية (اختياري)">
-    <button onclick="genQR()">إنشاء كود QR</button>
-    
-    <div id="qrDisplay"></div>
-</div>
+    <div class="card">
+        <h2>كود الوصول السريع (QR)</h2>
+        <input type="text" placeholder="05XXXXXXXX" style="width:100%; padding:12px; margin-bottom:10px;">
+        <button style="width:100%; padding:12px; background:#000; color:#fff; border-radius:8px;">إنشاء كود QR</button>
+        
+        <div class="benefit-box">
+            <span class="benefit-title">💡 وش فايدتها؟</span>
+            حوّل واجهة محلك أو فواتيرك لقنوات بيع مباشرة. العميل يمسح الكود وتفتح المحادثة جاهزة، مما يظهر احترافية مشروعك.
+        </div>
+    </div>
 
-<script>
-    function getWaLink(pId, mId) {
-        let p = document.getElementById(pId).value.replace(/\D/g, '');
-        if (p.startsWith('0')) p = '966' + p.substring(1);
-        else if (p.length === 9) p = '966' + p;
-        let m = document.getElementById(mId).value;
-        return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
-    }
-    function genLink() {
-        document.getElementById('finalLink').value = getWaLink('phone1', 'msg1');
-        document.getElementById('linkArea').style.display = 'block';
-    }
-    function genQR() {
-        let container = document.getElementById("qrDisplay");
-        container.innerHTML = "";
-        new QRCode(container, { text: getWaLink('phone2', 'msg2'), width: 180, height: 180 });
-    }
-    function copyLink() {
-        let el = document.getElementById('finalLink');
-        el.select();
-        document.execCommand("copy");
-        alert("تم نسخ الرابط!");
-    }
-</script>
 </body>
 </html>

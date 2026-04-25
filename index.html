@@ -6,17 +6,25 @@
 <title>أدوات واتساب بزنس</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f7f6; color: #111; }
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f7f6; color: #111; padding-bottom: 50px; }
     .header { text-align: center; padding: 50px 20px; }
     .header h1 { font-size: 34px; }
     .header span { color: #10b981; }
     .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 20px; }
     
+    /* التصميم الذي طلبته بالضبط */
     .card {
-        background: white; width: 320px; padding: 25px; border-radius: 20px;
+        background: white;
+        width: 320px;
+        padding: 25px;
+        border-radius: 20px;
         border: 1px solid #e5e7eb;
-        box-shadow: 0px 10px 0px #d1d5db, 0 10px 25px rgba(0,0,0,0.08);
+        box-shadow: 0px 15px 0px #d1d5db, 0px 15px 35px rgba(0,0,0,0.08);
         transition: 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0px 20px 0px #d1d5db, 0px 20px 40px rgba(0,0,0,0.1);
     }
     
     input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e5e7eb; margin-bottom: 12px; box-sizing: border-box; }
@@ -24,7 +32,7 @@
     button:hover { background: #059669; }
     
     #qrDisplay { display: flex; justify-content: center; margin-top: 15px; }
-    #finalLink { width: 100%; padding: 10px; text-align: center; color: #10b981; font-weight: bold; background: #f9f9f9; border: 1px solid #e5e7eb; border-radius: 10px; margin-top: 10px; }
+    #finalLink { width: 100%; padding: 10px; text-align: center; color: #10b981; font-weight: bold; background: #f9f9f9; border: 1px solid #e5e7eb; border-radius: 10px; margin-top: 10px; direction: ltr; }
 </style>
 </head>
 
@@ -58,34 +66,25 @@
 <script>
 function getWaLink(pId, mId) {
     let p = document.getElementById(pId).value.replace(/\D/g, '');
-    // تصحيح صيغة الرقم (إضافة 966)
-    if (p.startsWith('0')) {
-        p = '966' + p.substring(1);
-    } else if (p.length === 9) {
-        p = '966' + p;
-    }
+    if (p.startsWith('0')) p = '966' + p.substring(1);
+    else if (p.length === 9) p = '966' + p;
     
     let m = document.getElementById(mId).value.trim();
-    // بناء الرابط بشكل آمن
     let url = "https://wa.me/" + p;
-    if (m !== "") {
-        url += "?text=" + encodeURIComponent(m);
-    }
+    if (m !== "") url += "?text=" + encodeURIComponent(m);
     return url;
 }
 
 function genLink() {
-    let link = getWaLink('phone1', 'msg1');
-    document.getElementById('finalLink').value = link;
+    document.getElementById('finalLink').value = getWaLink('phone1', 'msg1');
     document.getElementById('linkArea').style.display = 'block';
 }
 
 function genQR() {
     let container = document.getElementById("qrDisplay");
     container.innerHTML = "";
-    let url = getWaLink('phone2', 'msg2');
     new QRCode(container, {
-        text: url,
+        text: getWaLink('phone2', 'msg2'),
         width: 150,
         height: 150
     });

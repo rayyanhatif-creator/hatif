@@ -4,84 +4,234 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أدوات واتساب بزنس</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<style>
-    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f7f6; }
-    .header { text-align: center; padding: 50px 20px; }
-    .header h1 { font-size: 32px; }
-    .header span { color: #10b981; }
-    .header p { color: #666; }
-    
-    .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 20px; }
-    
-    .card {
-        background: white; width: 320px; padding: 25px; border-radius: 20px;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0px 15px 0px #d1d5db, 0px 20px 40px rgba(0,0,0,0.08);
-        transition: 0.3s;
-    }
-    .card:hover { transform: translateY(-6px); }
 
-    h2 { margin-bottom: 10px; }
-    input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 12px; box-sizing: border-box; }
-    button { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #10b981; color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
-    button:hover { background: #059669; }
-    
-    #qrDisplay { display: flex; justify-content: center; margin-top: 15px; }
-    
-    .features { padding: 60px 20px; text-align: center; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
-    .feature { background: white; padding: 25px; border-radius: 18px; border: 1px solid #e5e7eb; box-shadow: 0px 10px 25px rgba(0,0,0,0.07); }
-    .icon { font-size: 28px; margin-bottom: 10px; }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7f6;
+}
+
+/* الهيدر */
+.header {
+    text-align: center;
+    padding: 50px 20px;
+}
+.header h1 { font-size: 32px; }
+.header span { color: #10b981; }
+.header p { color: #666; }
+
+/* الكونتينر */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+/* الكروت */
+.card {
+    background: white;
+    width: 320px;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0px 15px 0px #d1d5db, 0px 20px 40px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+h2 { margin-bottom: 10px; }
+
+/* الحقول */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+/* الأزرار */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #10b981;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #059669;
+}
+
+/* QR */
+#qrDisplay {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* الفوائد */
+.features {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.feature {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.07);
+}
+
+.icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <h1>🚀 أدوات <span>واتساب بزنس</span></h1>
-    <p>حوّل الزائر إلى عميل خلال ثواني</p>
+<div id="linkArea" style="display:none; margin-top:10px;">
+
+    <input type="text" id="finalLink" readonly onclick="this.select()">
+
+    <button onclick="copyLink()" style="margin-top:10px;">
+        📋 نسخ الرابط
+    </button>
+
+    <button onclick="openLink()" style="margin-top:10px; background:#0ea5e9;">
+        🚀 فتح واتساب
+    </button>
+
 </div>
 
 <div class="container" id="container">
+
+    <!-- رابط -->
     <div class="card" id="linkCard">
         <h2>📲 رابط واتساب</h2>
+
         <input type="text" id="phone1" placeholder="05XXXXXXXX">
         <input type="text" id="msg1" placeholder="اكتب رسالة (اختياري)">
         <button onclick="genLink()">إنشاء الرابط</button>
 
-        <div id="linkArea" style="display:none; margin-top:15px;">
+        <div id="linkArea" style="display:none;">
             <input type="text" id="finalLink" readonly onclick="this.select()">
-            <button onclick="copyLink()" style="margin-top:10px;">📋 نسخ الرابط</button>
-            <button onclick="openLink()" style="margin-top:10px; background:#0ea5e9;">🚀 فتح واتساب</button>
         </div>
     </div>
 
+    <!-- QR -->
     <div class="card" id="qrCard">
         <h2>🔳 كود QR</h2>
+
         <input type="text" id="phone2" placeholder="05XXXXXXXX">
         <input type="text" id="msg2" placeholder="اكتب رسالة (اختياري)">
         <button onclick="genQR()">إنشاء QR</button>
+
         <div id="qrDisplay"></div>
     </div>
+
 </div>
 
+<!-- وش فايدته -->
 <div class="features">
     <h2>وش فايدته؟</h2>
+
     <div class="features-grid">
-        <div class="feature"><div class="icon">🚀</div><h3>تواصل أسرع</h3><p>بدون حفظ الرقم، بضغطة واحدة يفتح المحادثة.</p></div>
-        <div class="feature"><div class="icon">💰</div><h3>يزيد المبيعات</h3><p>سهولة التواصل تعني احتمالية بيع أكبر.</p></div>
-        <div class="feature"><div class="icon">📱</div><h3>احترافية</h3><p>شكل منظم يعطي ثقة للعميل.</p></div>
-        <div class="feature"><div class="icon">🔗</div><h3>انتشار أوسع</h3><p>في كل مكان = فرصة تواصل جديدة.</p></div>
+
+        <div class="feature">
+            <div class="icon">🚀</div>
+            <h3>يوصل العميل لك بسرعة</h3>
+            <p>
+                بدل ما العميل يحفظ رقمك ويدوّره، بضغطة وحدة يفتح المحادثة معك.
+                هذا يقلل التردد ويخليه يتواصل مباشرة.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">💰</div>
+            <h3>يزيد فرص البيع</h3>
+            <p>
+                كل ما سهلت الطريق على العميل، زادت احتمالية إنه يشتري.
+                الرابط والباركود يحولون الزائر إلى محادثة حقيقية.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">📱</div>
+            <h3>يعطيك شكل احترافي</h3>
+            <p>
+                لما تستخدم QR أو رابط جاهز، مشروعك يبان منظم واحترافي،
+                وهذا يعطي ثقة أكبر عند العميل.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🔗</div>
+            <h3>تستخدمه في كل مكان</h3>
+            <p>
+                تقدر تحطه في الانستقرام، تويتر، موقعك، أو حتى تطبعه.
+                أي مكان = فرصة تواصل جديدة.
+            </p>
+        </div>
+
     </div>
 </div>
 
 <script>
+    function copyLink() {
+    let link = document.getElementById('finalLink');
+    link.select();
+    link.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(link.value);
+
+    alert("تم نسخ الرابط 📋");
+}
+
+function openLink() {
+    let link = document.getElementById('finalLink').value;
+
+    if (!link) {
+        alert("ما فيه رابط بعد");
+        return;
+    }
+
+    window.open(link, "_blank");
+}
 function getWaLink(phoneId, msgId) {
     let p = document.getElementById(phoneId).value.replace(/\D/g, '');
     let m = document.getElementById(msgId).value;
+
     if (p.startsWith('0')) p = '966' + p.substring(1);
     else if (p.length === 9) p = '966' + p;
+
     return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
 }
 
@@ -91,24 +241,41 @@ function genLink() {
     document.getElementById('linkArea').style.display = 'block';
 }
 
-function copyLink() {
-    let link = document.getElementById('finalLink');
-    link.select();
-    navigator.clipboard.writeText(link.value);
-    alert("تم نسخ الرابط 📋");
-}
-
-function openLink() {
-    let link = document.getElementById('finalLink').value;
-    if (link) window.open(link, "_blank");
-}
-
 function genQR() {
     let container = document.getElementById("qrDisplay");
     container.innerHTML = "";
+
     let link = getWaLink('phone2','msg2');
-    new QRCode(container, { text: link, width: 150, height: 150 });
+
+    if (!link.includes("966")) {
+        alert("اكتب رقم صحيح");
+        return;
+    }
+
+    new QRCode(container, {
+        text: link,
+        width: 150,
+       height: 150
+    });
 }
+
+/* ترتيب ذكي */
+function arrange() {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type");
+
+    const container = document.getElementById("container");
+    const link = document.getElementById("linkCard");
+    const qr = document.getElementById("qrCard");
+
+    if (type === "qr") {
+        container.prepend(qr);
+    } else if (type === "link") {
+        container.prepend(link);
+    }
+}
+
+arrange();
 </script>
 
 </body>

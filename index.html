@@ -17,6 +17,24 @@ body {
     overflow-x: hidden;
 }
 
+/* التنسيق الجديد للعنوان العلوي */
+.header {
+    text-align: center;
+    padding: 40px 20px 10px;
+}
+
+.header h1 {
+    color: #064e3b;
+    margin: 0;
+    font-size: 28px;
+}
+
+.header p {
+    color: #6b7280;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -75,6 +93,12 @@ button:hover { background: #059669; }
 
 <body>
 
+<!-- إضافة العبارة المطلوبة هنا -->
+<div class="header">
+    <h1>أدوات واتساب الاحترافية</h1>
+    <p>أنشئ روابطك وأكواد QR بكل سهولة</p>
+</div>
+
 <div class="container">
 
     <!-- رابط -->
@@ -108,7 +132,7 @@ button:hover { background: #059669; }
 
         <div id="qrDisplay"></div>
 
-        <!-- زر التحميل - مخفي افتراضياً -->
+        <!-- زر التحميل - يظهر فقط عند وجود الكود -->
         <button id="downloadBtn" onclick="downloadQR()" style="display:none; margin-top:10px; background:#6366f1;">
             📥 تحميل الباركود
         </button>
@@ -163,11 +187,10 @@ function genQR() {
         height: 180
     });
 
-    // إظهار زر التحميل بعد إنشاء الكود
+    // إظهار زر التحميل
     document.getElementById('downloadBtn').style.display = 'block';
 }
 
-/* تحميل QR */
 function downloadQR() {
     let img = document.querySelector("#qrDisplay img");
 

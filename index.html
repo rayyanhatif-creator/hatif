@@ -8,20 +8,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background: #f5f7f6;
+    overflow-x: hidden;
 }
-
-/* الهيدر */
-.header {
-    text-align: center;
-    padding: 50px 20px;
-}
-.header h1 { font-size: 32px; }
-.header span { color: #10b981; }
-.header p { color: #666; }
 
 /* الكونتينر */
 .container {
@@ -29,25 +25,29 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-    padding: 20px;
+    padding: 30px 15px;
+    max-width: 1100px;
+    margin: auto;
 }
 
-/* الكروت */
+/* الكروت (الخيار 3) */
 .card {
     background: white;
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
     padding: 25px;
     border-radius: 20px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0px 15px 0px #d1d5db, 0px 20px 40px rgba(0,0,0,0.08);
+    border: 2px solid #e5e7eb; /* بوردر أقوى */
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
 }
 
-h2 { margin-bottom: 10px; }
+h2 {
+    margin-bottom: 10px;
+}
 
 /* الحقول */
 input {
@@ -56,6 +56,7 @@ input {
     border-radius: 10px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
+    font-size: 14px;
 }
 
 /* الأزرار */
@@ -68,6 +69,7 @@ button {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    font-size: 14px;
 }
 
 button:hover {
@@ -104,8 +106,7 @@ button:hover {
     background: white;
     padding: 25px;
     border-radius: 18px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.07);
+    border: 2px solid #e5e7eb;
 }
 
 .icon {
@@ -117,23 +118,9 @@ button:hover {
 
 <body>
 
-<div id="linkArea" style="display:none; margin-top:10px;">
-
-    <input type="text" id="finalLink" readonly onclick="this.select()">
-
-    <button onclick="copyLink()" style="margin-top:10px;">
-        📋 نسخ الرابط
-    </button>
-
-    <button onclick="openLink()" style="margin-top:10px; background:#0ea5e9;">
-        🚀 فتح واتساب
-    </button>
-
-</div>
-
 <div class="container" id="container">
 
-    <!-- رابط -->
+    <!-- رابط واتساب -->
     <div class="card" id="linkCard">
         <h2>📲 رابط واتساب</h2>
 
@@ -141,8 +128,16 @@ button:hover {
         <input type="text" id="msg1" placeholder="اكتب رسالة (اختياري)">
         <button onclick="genLink()">إنشاء الرابط</button>
 
-        <div id="linkArea" style="display:none;">
+        <div id="linkArea" style="display:none; margin-top:10px;">
             <input type="text" id="finalLink" readonly onclick="this.select()">
+
+            <button onclick="copyLink()" style="margin-top:10px;">
+                📋 نسخ الرابط
+            </button>
+
+            <button onclick="openLink()" style="margin-top:10px; background:#0ea5e9;">
+                🚀 فتح واتساب
+            </button>
         </div>
     </div>
 
@@ -159,7 +154,7 @@ button:hover {
 
 </div>
 
-<!-- وش فايدته -->
+<!-- الفوائد -->
 <div class="features">
     <h2>وش فايدته؟</h2>
 
@@ -168,50 +163,34 @@ button:hover {
         <div class="feature">
             <div class="icon">🚀</div>
             <h3>يوصل العميل لك بسرعة</h3>
-            <p>
-                بدل ما العميل يحفظ رقمك ويدوّره، بضغطة وحدة يفتح المحادثة معك.
-                هذا يقلل التردد ويخليه يتواصل مباشرة.
-            </p>
+            <p>بضغطة وحدة يفتح المحادثة بدون حفظ الرقم.</p>
         </div>
 
         <div class="feature">
             <div class="icon">💰</div>
             <h3>يزيد فرص البيع</h3>
-            <p>
-                كل ما سهلت الطريق على العميل، زادت احتمالية إنه يشتري.
-                الرابط والباركود يحولون الزائر إلى محادثة حقيقية.
-            </p>
+            <p>تسهيل التواصل = زيادة احتمالية الشراء.</p>
         </div>
 
         <div class="feature">
             <div class="icon">📱</div>
-            <h3>يعطيك شكل احترافي</h3>
-            <p>
-                لما تستخدم QR أو رابط جاهز، مشروعك يبان منظم واحترافي،
-                وهذا يعطي ثقة أكبر عند العميل.
-            </p>
+            <h3>شكل احترافي</h3>
+            <p>يعطي مشروعك ثقة وتنظيم.</p>
         </div>
 
         <div class="feature">
             <div class="icon">🔗</div>
-            <h3>تستخدمه في كل مكان</h3>
-            <p>
-                تقدر تحطه في الانستقرام، تويتر، موقعك، أو حتى تطبعه.
-                أي مكان = فرصة تواصل جديدة.
-            </p>
+            <h3>يستخدم بكل مكان</h3>
+            <p>موقع، انستقرام، أو حتى مطبوع.</p>
         </div>
 
     </div>
 </div>
 
 <script>
-    function copyLink() {
+function copyLink() {
     let link = document.getElementById('finalLink');
-    link.select();
-    link.setSelectionRange(0, 99999);
-
     navigator.clipboard.writeText(link.value);
-
     alert("تم نسخ الرابط 📋");
 }
 
@@ -225,6 +204,7 @@ function openLink() {
 
     window.open(link, "_blank");
 }
+
 function getWaLink(phoneId, msgId) {
     let p = document.getElementById(phoneId).value.replace(/\D/g, '');
     let m = document.getElementById(msgId).value;
@@ -237,6 +217,12 @@ function getWaLink(phoneId, msgId) {
 
 function genLink() {
     let link = getWaLink('phone1','msg1');
+
+    if (!link.includes("966")) {
+        alert("اكتب رقم صحيح");
+        return;
+    }
+
     document.getElementById('finalLink').value = link;
     document.getElementById('linkArea').style.display = 'block';
 }
@@ -255,11 +241,10 @@ function genQR() {
     new QRCode(container, {
         text: link,
         width: 150,
-       height: 150
+        height: 150
     });
 }
 
-/* ترتيب ذكي */
 function arrange() {
     const params = new URLSearchParams(window.location.search);
     const type = params.get("type");
@@ -268,11 +253,8 @@ function arrange() {
     const link = document.getElementById("linkCard");
     const qr = document.getElementById("qrCard");
 
-    if (type === "qr") {
-        container.prepend(qr);
-    } else if (type === "link") {
-        container.prepend(link);
-    }
+    if (type === "qr") container.prepend(qr);
+    else if (type === "link") container.prepend(link);
 }
 
 arrange();

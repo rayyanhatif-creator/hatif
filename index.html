@@ -17,22 +17,10 @@ body {
     overflow-x: hidden;
 }
 
-/* التنسيق الجديد للعنوان العلوي */
-.header {
+/* تنسيق بسيط للعنوان اللي طلبته */
+.main-title {
     text-align: center;
-    padding: 40px 20px 10px;
-}
-
-.header h1 {
-    color: #064e3b;
-    margin: 0;
-    font-size: 28px;
-}
-
-.header p {
-    color: #6b7280;
-    margin-top: 10px;
-    font-size: 18px;
+    padding-top: 30px;
 }
 
 .container {
@@ -93,8 +81,8 @@ button:hover { background: #059669; }
 
 <body>
 
-<!-- إضافة العبارة المطلوبة هنا -->
-<div class="header">
+<!-- إضافة الكلام اللي طلبته في البداية -->
+<div class="main-title">
     <h1>أدوات واتساب الاحترافية</h1>
     <p>أنشئ روابطك وأكواد QR بكل سهولة</p>
 </div>
@@ -132,7 +120,7 @@ button:hover { background: #059669; }
 
         <div id="qrDisplay"></div>
 
-        <!-- زر التحميل - يظهر فقط عند وجود الكود -->
+        <!-- زر التحميل - اضفت له ID للتحكم بظهوره -->
         <button id="downloadBtn" onclick="downloadQR()" style="display:none; margin-top:10px; background:#6366f1;">
             📥 تحميل الباركود
         </button>
@@ -175,9 +163,9 @@ function genQR() {
 
     let link = getWaLink('phone2','msg2');
 
-    if (!link.includes("966") || link.split('/').pop().startsWith('?')) {
+    if (!link.includes("966")) {
         alert("اكتب رقم صحيح");
-        document.getElementById('downloadBtn').style.display = 'none';
+        document.getElementById('downloadBtn').style.display = 'none'; // يخفي الزر لو الرقم غلط
         return;
     }
 
@@ -186,11 +174,12 @@ function genQR() {
         width: 180,
         height: 180
     });
-
-    // إظهار زر التحميل
+    
+    // يظهر زر التحميل فقط لما يطلع الكود
     document.getElementById('downloadBtn').style.display = 'block';
 }
 
+/* تحميل QR */
 function downloadQR() {
     let img = document.querySelector("#qrDisplay img");
 

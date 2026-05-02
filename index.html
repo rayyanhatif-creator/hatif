@@ -8,9 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -19,7 +17,6 @@ body {
     overflow-x: hidden;
 }
 
-/* الكونتينر */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -30,33 +27,27 @@ body {
     margin: auto;
 }
 
-/* الكروت (الخيار 3) */
+/* الكروت */
 .card {
     background: white;
     width: 100%;
     max-width: 320px;
     padding: 25px;
     border-radius: 20px;
-    border: 2px solid #e5e7eb; /* بوردر أقوى */
+    border: 2px solid #e5e7eb;
     transition: 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-}
+.card:hover { transform: translateY(-4px); }
 
-h2 {
-    margin-bottom: 10px;
-}
+h2 { margin-bottom: 10px; }
 
-/* الحقول */
 input {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
-    font-size: 14px;
 }
 
 /* الأزرار */
@@ -69,12 +60,9 @@ button {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    font-size: 14px;
 }
 
-button:hover {
-    background: #059669;
-}
+button:hover { background: #059669; }
 
 /* QR */
 #qrDisplay {
@@ -82,46 +70,15 @@ button:hover {
     justify-content: center;
     margin-top: 15px;
 }
-
-/* الفوائد */
-.features {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.features h2 {
-    font-size: 28px;
-    margin-bottom: 25px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.feature {
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    border: 2px solid #e5e7eb;
-}
-
-.icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="container" id="container">
+<div class="container">
 
-    <!-- رابط واتساب -->
-    <div class="card" id="linkCard">
+    <!-- رابط -->
+    <div class="card">
         <h2>📲 رابط واتساب</h2>
 
         <input type="text" id="phone1" placeholder="05XXXXXXXX">
@@ -142,7 +99,7 @@ button:hover {
     </div>
 
     <!-- QR -->
-    <div class="card" id="qrCard">
+    <div class="card">
         <h2>🔳 كود QR</h2>
 
         <input type="text" id="phone2" placeholder="05XXXXXXXX">
@@ -150,41 +107,13 @@ button:hover {
         <button onclick="genQR()">إنشاء QR</button>
 
         <div id="qrDisplay"></div>
+
+        <!-- زر التحميل - مخفي افتراضياً -->
+        <button id="downloadBtn" onclick="downloadQR()" style="display:none; margin-top:10px; background:#6366f1;">
+            📥 تحميل الباركود
+        </button>
     </div>
 
-</div>
-
-<!-- الفوائد -->
-<div class="features">
-    <h2>وش فايدته؟</h2>
-
-    <div class="features-grid">
-
-        <div class="feature">
-            <div class="icon">🚀</div>
-            <h3>يوصل العميل لك بسرعة</h3>
-            <p>بضغطة وحدة يفتح المحادثة بدون حفظ الرقم.</p>
-        </div>
-
-        <div class="feature">
-            <div class="icon">💰</div>
-            <h3>يزيد فرص البيع</h3>
-            <p>تسهيل التواصل = زيادة احتمالية الشراء.</p>
-        </div>
-
-        <div class="feature">
-            <div class="icon">📱</div>
-            <h3>شكل احترافي</h3>
-            <p>يعطي مشروعك ثقة وتنظيم.</p>
-        </div>
-
-        <div class="feature">
-            <div class="icon">🔗</div>
-            <h3>يستخدم بكل مكان</h3>
-            <p>موقع، انستقرام، أو حتى مطبوع.</p>
-        </div>
-
-    </div>
 </div>
 
 <script>
@@ -196,12 +125,7 @@ function copyLink() {
 
 function openLink() {
     let link = document.getElementById('finalLink').value;
-
-    if (!link) {
-        alert("ما فيه رابط بعد");
-        return;
-    }
-
+    if (!link) return alert("ما فيه رابط");
     window.open(link, "_blank");
 }
 
@@ -217,12 +141,6 @@ function getWaLink(phoneId, msgId) {
 
 function genLink() {
     let link = getWaLink('phone1','msg1');
-
-    if (!link.includes("966")) {
-        alert("اكتب رقم صحيح");
-        return;
-    }
-
     document.getElementById('finalLink').value = link;
     document.getElementById('linkArea').style.display = 'block';
 }
@@ -233,31 +151,36 @@ function genQR() {
 
     let link = getWaLink('phone2','msg2');
 
-    if (!link.includes("966")) {
+    if (!link.includes("966") || link.split('/').pop().startsWith('?')) {
         alert("اكتب رقم صحيح");
+        document.getElementById('downloadBtn').style.display = 'none';
         return;
     }
 
     new QRCode(container, {
         text: link,
-        width: 150,
-        height: 150
+        width: 180,
+        height: 180
     });
+
+    // إظهار زر التحميل بعد إنشاء الكود
+    document.getElementById('downloadBtn').style.display = 'block';
 }
 
-function arrange() {
-    const params = new URLSearchParams(window.location.search);
-    const type = params.get("type");
+/* تحميل QR */
+function downloadQR() {
+    let img = document.querySelector("#qrDisplay img");
 
-    const container = document.getElementById("container");
-    const link = document.getElementById("linkCard");
-    const qr = document.getElementById("qrCard");
+    if (!img) {
+        alert("سو QR أول");
+        return;
+    }
 
-    if (type === "qr") container.prepend(qr);
-    else if (type === "link") container.prepend(link);
+    let a = document.createElement("a");
+    a.href = img.src;
+    a.download = "whatsapp-qr.png";
+    a.click();
 }
-
-arrange();
 </script>
 
 </body>

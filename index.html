@@ -17,12 +17,6 @@ body {
     overflow-x: hidden;
 }
 
-/* تنسيق بسيط للعنوان اللي طلبته */
-.main-title {
-    text-align: center;
-    padding-top: 30px;
-}
-
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -81,8 +75,8 @@ button:hover { background: #059669; }
 
 <body>
 
-<!-- إضافة الكلام اللي طلبته في البداية -->
-<div class="main-title">
+<!-- الكلام اللي طلبته فوق أول شيء -->
+<div style="text-align: center; margin-top: 20px;">
     <h1>أدوات واتساب الاحترافية</h1>
     <p>أنشئ روابطك وأكواد QR بكل سهولة</p>
 </div>
@@ -120,7 +114,7 @@ button:hover { background: #059669; }
 
         <div id="qrDisplay"></div>
 
-        <!-- زر التحميل - اضفت له ID للتحكم بظهوره -->
+        <!-- زر التحميل - مخفي ولا يظهر إلا مع الكود -->
         <button id="downloadBtn" onclick="downloadQR()" style="display:none; margin-top:10px; background:#6366f1;">
             📥 تحميل الباركود
         </button>
@@ -165,7 +159,7 @@ function genQR() {
 
     if (!link.includes("966")) {
         alert("اكتب رقم صحيح");
-        document.getElementById('downloadBtn').style.display = 'none'; // يخفي الزر لو الرقم غلط
+        document.getElementById('downloadBtn').style.display = 'none';
         return;
     }
 
@@ -175,7 +169,7 @@ function genQR() {
         height: 180
     });
     
-    // يظهر زر التحميل فقط لما يطلع الكود
+    // إظهار زر التحميل عند نجاح العملية
     document.getElementById('downloadBtn').style.display = 'block';
 }
 

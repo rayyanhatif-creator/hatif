@@ -4,48 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>هاتف | الخزنة الرقمية الفاخرة لعائلة العز</title>
-    <meta name="description" content="هاتف - الخزنة الرقمية الأكثر أماناً وفخامة لإدارة الأصول الخاصة والمقتنيات الثمينة بخصوصية تامة.">
-    <meta name="keywords" content="هاتف, HATIF, الخزنة الرقمية, إدارة الأصول, عائلة العز, مقتنيات فاخرة, حماية البيانات, Luxury Vault, استثمار ذهب, ساعات فاخرة">
-    <meta name="author" content="Al-Ezz Family Office">
+    <title>هاتف | HATIF - إدارة الأصول والخدمات الرقمية</title>
+    <meta name="description" content="منصة هاتف لإدارة الأصول الخاصة والخدمات الرقمية المتكاملة، دقة، أمان وفخامة في التعامل.">
+    <meta name="keywords" content="هاتف, HATIF, إدارة أصول, خدمات رقمية, خزنة رقمية, خدمات رجال أعمال, HATIF IO">
     
-    <meta property="og:title" content="هاتف | الخزنة الرقمية للفخامة">
-    <meta property="og:description" content="إدارة الأصول والمقتنيات الثمينة في بيئة رقمية آمنة وفاخرة.">
-    <meta property="og:image" content="رابط_صورة_المعاينة.jpg">
-    <meta property="og:type" content="website">
-
     <style>
-        :root { --gold: #c5a059; --bg: #050505; --card: #0d0d0d; --border: #1a1a1a; --hatif-teal: #48a08b; }
-        body { background: var(--bg); color: white; font-family: 'Times New Roman', serif; margin: 0; padding: 0; }
+        :root { 
+            --gold: #c5a059; 
+            --bg: #050505; 
+            --card: #0d0d0d; 
+            --border: #1a1a1a; 
+            --hatif-green: #00a884; /* لون زر هاتف */
+        }
         
-        /* شريط التنقل العلوي (Hatif Style) */
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+
+        /* الهيدر الجديد (محاكاة للصورة) */
         .navbar {
-            background: #fff;
-            padding: 15px 60px;
+            background: white;
+            padding: 10px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
             position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 1000;
         }
-        .nav-right { display: flex; align-items: center; gap: 30px; }
-        .nav-logo { color: #1a1a1a; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; font-family: sans-serif; }
-        .nav-logo span { color: var(--hatif-teal); }
-        .nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: #666; font-family: sans-serif; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--hatif-teal); }
-        .btn-hatif { background: var(--hatif-teal); color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-family: sans-serif; font-size: 0.8rem; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .logo { color: #064e3b; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; gap: 5px; text-decoration: none;}
+        .btn-start { background: var(--hatif-green); color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; }
 
-        /* شاشة الدخول الفخمة */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1s; }
+        /* شاشة الدخول */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1s; }
         .pin-input { background: transparent; border: none; border-bottom: 2px solid var(--gold); font-size: 2rem; color: var(--gold); text-align: center; width: 200px; outline: none; letter-spacing: 10px; }
 
         /* المحتوى الرئيسي */
-        main { padding: 60px; max-width: 1200px; margin: 0 auto; display: none; }
-        .header { border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 50px; text-align: center; }
-        .header h1 { font-weight: 100; letter-spacing: 15px; font-size: 2.5rem; color: var(--gold); }
+        main { padding: 40px 60px; max-width: 1200px; margin: 0 auto; display: none; }
+        .header-content { border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 50px; text-align: center; }
+        .header-content h1 { font-weight: 100; letter-spacing: 15px; font-size: 2.5rem; color: var(--gold); }
 
         .assets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .asset-card { background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 5px; position: relative; transition: 0.5s; }
@@ -56,37 +53,36 @@
 
         .total-box { margin-bottom: 60px; text-align: center; padding: 40px; background: linear-gradient(180deg, #0d0d0d 0%, #050505 100%); border-radius: 10px; border: 1px solid var(--border); }
         
-        footer { margin-top: 100px; text-align: center; font-size: 0.7rem; color: #222; letter-spacing: 5px; }
+        footer { margin-top: 100px; text-align: center; font-size: 0.7rem; color: #444; letter-spacing: 5px; padding-bottom: 40px;}
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-right">
-            <div class="nav-logo">HATIF <span>| هاتف</span></div>
-            <ul class="nav-links">
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#">الخزنة</a></li>
-                <li><a href="#">التقارير</a></li>
-                <li><a href="#">الأسئلة الشائعة</a></li>
-            </ul>
-        </div>
-        <a href="#" class="btn-hatif">جولة في نظام هاتف</a>
-    </nav>
-
     <div class="overlay" id="lockScreen">
-        <div style="color: var(--gold); margin-bottom: 30px; letter-spacing: 5px; font-size: 0.8rem;">PRIVATE ACCESS ONLY</div>
+        <div style="color: var(--gold); margin-bottom: 30px; letter-spacing: 5px; font-size: 0.8rem;">HATIF PRIVATE ACCESS</div>
         <input type="password" class="pin-input" id="pin" maxlength="4" placeholder="••••" onkeyup="checkPin()">
     </div>
 
+    <nav class="navbar" id="mainNav" style="display: none;">
+        <div class="nav-links">
+            <a href="#" class="btn-start">ابدأ مع هاتف</a>
+            <a href="#">الأسئلة الشائعة</a>
+            <a href="#">مركز المساعدة</a>
+        </div>
+        <a href="#" class="logo">
+            <span style="color: #064e3b;">HATIF</span>
+            <img src="https://img.icons8.com/color/48/phone.png" width="25" alt="logo">
+        </a>
+    </nav>
+
     <main id="dashboard">
-        <div class="header">
-            <h1>THE VAULT</h1>
-            <p style="color: #444; letter-spacing: 2px;">إدارة الأصول الخاصة بعائلة العز</p>
+        <div class="header-content">
+            <h1>HATIF VAULT</h1>
+            <p style="color: #444; letter-spacing: 2px;">نظام "هاتف" لإدارة الأصول الخاصة</p>
         </div>
 
         <div class="total-box">
-            <span style="color: #444; font-size: 0.8rem; letter-spacing: 3px;">إجمالي القيمة المحفوظة</span>
+            <span style="color: #444; font-size: 0.8rem; letter-spacing: 3px;">TOTAL PORTFOLIO VALUE</span>
             <div style="font-size: 3.5rem; font-weight: 100; color: var(--gold); margin: 10px 0;">3,450,000 ر.س</div>
             <span style="color: #2ecc71; font-size: 0.9rem;">+ 12.5% منذ العام الماضي</span>
         </div>
@@ -115,7 +111,7 @@
         </div>
 
         <footer>
-            CONFIDENTIAL DOCUMENT • AL-EZZ FAMILY OFFICE &copy; 2026
+            CONFIDENTIAL DOCUMENT • HATIF DIGITAL OFFICE &copy; 2026
         </footer>
     </main>
 
@@ -126,6 +122,7 @@
                 document.getElementById('lockScreen').style.opacity = "0";
                 setTimeout(() => {
                     document.getElementById('lockScreen').style.display = "none";
+                    document.getElementById('mainNav').style.display = "flex";
                     document.getElementById('dashboard').style.display = "block";
                 }, 1000);
             }

@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هاتف | THE VAULT</title>
+    
+    <title>هاتف | الخزنة الرقمية الفاخرة لعائلة العز</title>
+    <meta name="description" content="هاتف - الخزنة الرقمية الأكثر أماناً وفخامة لإدارة الأصول الخاصة والمقتنيات الثمينة بخصوصية تامة.">
+    <meta name="keywords" content="هاتف, HATIF, الخزنة الرقمية, إدارة الأصول, عائلة العز, مقتنيات فاخرة, حماية البيانات, Luxury Vault, استثمار ذهب, ساعات فاخرة">
+    <meta name="author" content="Al-Ezz Family Office">
+    
+    <meta property="og:title" content="هاتف | الخزنة الرقمية للفخامة">
+    <meta property="og:description" content="إدارة الأصول والمقتنيات الثمينة في بيئة رقمية آمنة وفاخرة.">
+    <meta property="og:image" content="رابط_صورة_المعاينة.jpg">
+    <meta property="og:type" content="website">
+
     <style>
         :root { --gold: #c5a059; --bg: #050505; --card: #0d0d0d; --border: #1a1a1a; --hatif-teal: #48a08b; }
         body { background: var(--bg); color: white; font-family: 'Times New Roman', serif; margin: 0; padding: 0; }
@@ -61,7 +71,7 @@
                 <li><a href="#">الأسئلة الشائعة</a></li>
             </ul>
         </div>
-        <a href="#" class="btn-hatif">جولة في النظام</a>
+        <a href="#" class="btn-hatif">جولة في نظام هاتف</a>
     </nav>
 
     <div class="overlay" id="lockScreen">
@@ -76,7 +86,7 @@
         </div>
 
         <div class="total-box">
-            <span style="color: #444; font-size: 0.8rem; letter-spacing: 3px;">TOTAL PORTFOLIO VALUE</span>
+            <span style="color: #444; font-size: 0.8rem; letter-spacing: 3px;">إجمالي القيمة المحفوظة</span>
             <div style="font-size: 3.5rem; font-weight: 100; color: var(--gold); margin: 10px 0;">3,450,000 ر.س</div>
             <span style="color: #2ecc71; font-size: 0.9rem;">+ 12.5% منذ العام الماضي</span>
         </div>
@@ -112,7 +122,7 @@
     <script>
         function checkPin() {
             const pin = document.getElementById('pin').value;
-            if(pin === "1234") { // الرمز الافتراضي للدخول
+            if(pin === "1234") { 
                 document.getElementById('lockScreen').style.opacity = "0";
                 setTimeout(() => {
                     document.getElementById('lockScreen').style.display = "none";

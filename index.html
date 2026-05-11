@@ -1,132 +1,283 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>هاتف | HATIF - إدارة الأصول والخدمات الرقمية</title>
-    <meta name="description" content="منصة هاتف لإدارة الأصول الخاصة والخدمات الرقمية المتكاملة، دقة، أمان وفخامة في التعامل.">
-    <meta name="keywords" content="هاتف, HATIF, إدارة أصول, خدمات رقمية, خزنة رقمية, خدمات رجال أعمال, HATIF IO">
-    
-    <style>
-        :root { 
-            --gold: #c5a059; 
-            --bg: #050505; 
-            --card: #0d0d0d; 
-            --border: #1a1a1a; 
-            --hatif-green: #00a884; /* لون زر هاتف */
-        }
-        
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أدوات واتساب بزنس</title>
 
-        /* الهيدر الجديد (محاكاة للصورة) */
-        .navbar {
-            background: white;
-            padding: 10px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        .logo { color: #064e3b; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; gap: 5px; text-decoration: none;}
-        .btn-start { background: var(--hatif-green); color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        /* شاشة الدخول */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1s; }
-        .pin-input { background: transparent; border: none; border-bottom: 2px solid var(--gold); font-size: 2rem; color: var(--gold); text-align: center; width: 200px; outline: none; letter-spacing: 10px; }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7f6;
+}
 
-        /* المحتوى الرئيسي */
-        main { padding: 40px 60px; max-width: 1200px; margin: 0 auto; display: none; }
-        .header-content { border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 50px; text-align: center; }
-        .header-content h1 { font-weight: 100; letter-spacing: 15px; font-size: 2.5rem; color: var(--gold); }
+/* الهيدر */
+.header {
+    text-align: center;
+    padding: 50px 20px;
+}
+.header h1 { font-size: 32px; }
+.header span { color: #10b981; }
+.header p { color: #666; }
 
-        .assets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .asset-card { background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 5px; position: relative; transition: 0.5s; }
-        .asset-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .asset-card h3 { font-weight: 300; letter-spacing: 2px; color: var(--gold); margin-top: 0; }
-        .asset-value { font-size: 1.8rem; font-weight: 100; margin: 20px 0; }
-        .tag { font-size: 0.7rem; color: #444; border: 1px solid #222; padding: 5px 10px; border-radius: 50px; }
+/* الكونتينر */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
 
-        .total-box { margin-bottom: 60px; text-align: center; padding: 40px; background: linear-gradient(180deg, #0d0d0d 0%, #050505 100%); border-radius: 10px; border: 1px solid var(--border); }
-        
-        footer { margin-top: 100px; text-align: center; font-size: 0.7rem; color: #444; letter-spacing: 5px; padding-bottom: 40px;}
-    </style>
+/* الكروت */
+.card {
+    background: white;
+    width: 320px;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0px 15px 0px #d1d5db, 0px 20px 40px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+h2 { margin-bottom: 10px; }
+
+/* الحقول */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+/* الأزرار */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #10b981;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #059669;
+}
+
+/* QR */
+#qrDisplay {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* الفوائد */
+.features {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.feature {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.07);
+}
+
+.icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="overlay" id="lockScreen">
-        <div style="color: var(--gold); margin-bottom: 30px; letter-spacing: 5px; font-size: 0.8rem;">HATIF PRIVATE ACCESS</div>
-        <input type="password" class="pin-input" id="pin" maxlength="4" placeholder="••••" onkeyup="checkPin()">
-    </div>
+<div id="linkArea" style="display:none; margin-top:10px;">
 
-    <nav class="navbar" id="mainNav" style="display: none;">
-        <div class="nav-links">
-            <a href="#" class="btn-start">ابدأ مع هاتف</a>
-            <a href="#">الأسئلة الشائعة</a>
-            <a href="#">مركز المساعدة</a>
-        </div>
-        <a href="#" class="logo">
-            <span style="color: #064e3b;">HATIF</span>
-            <img src="https://img.icons8.com/color/48/phone.png" width="25" alt="logo">
-        </a>
-    </nav>
+    <input type="text" id="finalLink" readonly onclick="this.select()">
 
-    <main id="dashboard">
-        <div class="header-content">
-            <h1>HATIF VAULT</h1>
-            <p style="color: #444; letter-spacing: 2px;">نظام "هاتف" لإدارة الأصول الخاصة</p>
-        </div>
+    <button onclick="copyLink()" style="margin-top:10px;">
+        📋 نسخ الرابط
+    </button>
 
-        <div class="total-box">
-            <span style="color: #444; font-size: 0.8rem; letter-spacing: 3px;">TOTAL PORTFOLIO VALUE</span>
-            <div style="font-size: 3.5rem; font-weight: 100; color: var(--gold); margin: 10px 0;">3,450,000 ر.س</div>
-            <span style="color: #2ecc71; font-size: 0.9rem;">+ 12.5% منذ العام الماضي</span>
-        </div>
+    <button onclick="openLink()" style="margin-top:10px; background:#0ea5e9;">
+        🚀 فتح واتساب
+    </button>
 
-        <div class="assets-grid">
-            <div class="asset-card">
-                <h3>ROLEX DAYTONA</h3>
-                <div class="asset-value">185,000 ر.س</div>
-                <span class="tag">ساعات فاخرة</span>
-                <div style="margin-top: 20px; font-size: 0.7rem; color: #666;">الرقم التسلسلي: #RX-9920</div>
-            </div>
+</div>
 
-            <div class="asset-card">
-                <h3>PORSCHE 911 GT3</h3>
-                <div class="asset-value">920,000 ر.س</div>
-                <span class="tag">سيارات نادرة</span>
-                <div style="margin-top: 20px; font-size: 0.7rem; color: #666;">سنة الصنع: 2024</div>
-            </div>
+<div class="container" id="container">
 
-            <div class="asset-card">
-                <h3>INVESTMENT GOLD</h3>
-                <div class="asset-value">2,345,000 ر.س</div>
-                <span class="tag">سبائك ذهب</span>
-                <div style="margin-top: 20px; font-size: 0.7rem; color: #666;">الوزن الإجمالي: 8 كجم</div>
-            </div>
-        </div>
+    <!-- رابط -->
+    <div class="card" id="linkCard">
+        <h2>📲 رابط واتساب</h2>
 
-        <footer>
-            CONFIDENTIAL DOCUMENT • HATIF DIGITAL OFFICE &copy; 2026
-        </footer>
-    </main>
+        <input type="text" id="phone1" placeholder="05XXXXXXXX">
+        <input type="text" id="msg1" placeholder="اكتب رسالة (اختياري)">
+        <button onclick="genLink()">إنشاء الرابط</button>
 
-    <script>
-        function checkPin() {
-            const pin = document.getElementById('pin').value;
-            if(pin === "1234") { 
-                document.getElementById('lockScreen').style.opacity = "0";
-                setTimeout(() => {
-                    document.getElementById('lockScreen').style.display = "none";
-                    document.getElementById('mainNav').style.display = "flex";
-                    document.getElementById('dashboard').style.display = "block";
-                }, 1000);
-            }
-        }
-    </script>
+        <div id="linkArea" style="display:none;">
+            <input type="text" id="finalLink" readonly onclick="this.select()">
+        </div>
+    </div>
+
+    <!-- QR -->
+    <div class="card" id="qrCard">
+        <h2>🔳 كود QR</h2>
+
+        <input type="text" id="phone2" placeholder="05XXXXXXXX">
+        <input type="text" id="msg2" placeholder="اكتب رسالة (اختياري)">
+        <button onclick="genQR()">إنشاء QR</button>
+
+        <div id="qrDisplay"></div>
+    </div>
+
+</div>
+
+<!-- وش فايدته -->
+<div class="features">
+    <h2>وش فايدته؟</h2>
+
+    <div class="features-grid">
+
+        <div class="feature">
+            <div class="icon">🚀</div>
+            <h3>يوصل العميل لك بسرعة</h3>
+            <p>
+                بدل ما العميل يحفظ رقمك ويدوّره، بضغطة وحدة يفتح المحادثة معك.
+                هذا يقلل التردد ويخليه يتواصل مباشرة.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">💰</div>
+            <h3>يزيد فرص البيع</h3>
+            <p>
+                كل ما سهلت الطريق على العميل، زادت احتمالية إنه يشتري.
+                الرابط والباركود يحولون الزائر إلى محادثة حقيقية.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">📱</div>
+            <h3>يعطيك شكل احترافي</h3>
+            <p>
+                لما تستخدم QR أو رابط جاهز، مشروعك يبان منظم واحترافي،
+                وهذا يعطي ثقة أكبر عند العميل.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🔗</div>
+            <h3>تستخدمه في كل مكان</h3>
+            <p>
+                تقدر تحطه في الانستقرام، تويتر، موقعك، أو حتى تطبعه.
+                أي مكان = فرصة تواصل جديدة.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function copyLink() {
+    let link = document.getElementById('finalLink');
+    link.select();
+    link.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(link.value);
+
+    alert("تم نسخ الرابط 📋");
+}
+
+function openLink() {
+    let link = document.getElementById('finalLink').value;
+
+    if (!link) {
+        alert("ما فيه رابط بعد");
+        return;
+    }
+
+    window.open(link, "_blank");
+}
+function getWaLink(phoneId, msgId) {
+    let p = document.getElementById(phoneId).value.replace(/\D/g, '');
+    let m = document.getElementById(msgId).value;
+
+    if (p.startsWith('0')) p = '966' + p.substring(1);
+    else if (p.length === 9) p = '966' + p;
+
+    return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
+}
+
+function genLink() {
+    let link = getWaLink('phone1','msg1');
+    document.getElementById('finalLink').value = link;
+    document.getElementById('linkArea').style.display = 'block';
+}
+
+function genQR() {
+    let container = document.getElementById("qrDisplay");
+    container.innerHTML = "";
+
+    let link = getWaLink('phone2','msg2');
+
+    if (!link.includes("966")) {
+        alert("اكتب رقم صحيح");
+        return;
+    }
+
+    new QRCode(container, {
+        text: link,
+        width: 150,
+       height: 150
+    });
+}
+
+/* ترتيب ذكي */
+function arrange() {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type");
+
+    const container = document.getElementById("container");
+    const link = document.getElementById("linkCard");
+    const qr = document.getElementById("qrCard");
+
+    if (type === "qr") {
+        container.prepend(qr);
+    } else if (type === "link") {
+        container.prepend(link);
+    }
+}
+
+arrange();
+</script>
+
 </body>
 </html>
+انا عندي ذا الكود عندي سلبيتين السلبية الاولا ليه تحسه مقصوص

@@ -1,166 +1,323 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>أدوات واتساب الاحترافية | إنشاء روابط و كود QR</title>
-    <meta name="description" content="أفضل أداة مجانية لإنشاء روابط واتساب مباشرة وكود QR احترافي لعملك. سهل تواصل عملائك معك بضغطة واحدة.">
-    <meta name="keywords" content="واتساب, رابط واتساب, كود QR, تسويق, بزنس, هاتف, إنشاء رابط, واتساب ويب">
-    <meta name="author" content="Hatif Tools">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f7f6; color: #333; }
-        
-        /* --- تنسيق الهيدر العلوي (نفس الصورة) --- */
-        .navbar {
-            background: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 50px;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a { text-decoration: none; color: #4b5563; font-size: 14px; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: #10b981; }
-        
-        .logo { font-weight: bold; font-size: 22px; color: #111827; display: flex; align-items: center; gap: 5px; }
-        .logo span { color: #10b981; }
+<title>مساعد الواتس | إنشاء رابط واتساب مباشر و QR Code</title>
 
-        .btn-try {
-            background: #10b981;
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 14px !important;
-        }
+<meta name="description" content="أفضل أداة مجانية لإنشاء رابط واتساب مباشر وكود QR احترافي بسهولة." />
 
-        /* --- بقية التنسيقات السابقة --- */
-        .hero-section {
-            background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .hero-section h1 { font-size: 36px; margin-bottom: 15px; }
-        .hero-section h1 span { color: #10b981; }
-        .hero-section p { color: #9ca3af; font-size: 18px; }
+<meta name="keywords" content="واتساب, رابط واتساب, QR Code, كود QR, مساعد الواتس, واتساب بزنس, إنشاء رابط واتساب, تسويق واتساب"/>
 
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 40px 20px; margin-top: -60px; }
+<meta name="author" content="مساعد الواتس"/>
 
-        .card { 
-            background: white; width: 340px; padding: 30px; border-radius: 20px; 
-            border: 1px solid #e5e7eb; box-shadow: 0px 20px 40px rgba(0,0,0,0.08); 
-            transition: 0.3s; display: flex; flex-direction: column;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 12px; box-sizing: border-box; font-family: inherit; }
-        button { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #10b981; color: white; font-weight: bold; cursor: pointer; margin-bottom: 8px; }
-        button:hover { background: #059669; }
-        .btn-blue { background: #0ea5e9; }
-        .btn-blue:hover { background: #0284c7; }
+<style>
 
-        #qrDisplay { display: flex; justify-content: center; margin-top: 15px; min-height: 150px; }
-        .result-area { margin-top: 15px; padding-top: 15px; border-top: 2px dashed #eee; display: none; }
+/* تحسين عام */
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f5f7f6;
+color:#111827;
+line-height:1.6;
+}
 
-        .features { padding: 60px 20px; text-align: center; background: #fff; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1100px; margin: auto; }
-        .feature { background: #f9fafb; padding: 25px; border-radius: 15px; border: 1px solid #eee; }
-    </style>
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 50px;
+background:white;
+position:sticky;
+top:0;
+border-bottom:1px solid #eee;
+z-index:999;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.logo span{ color:#10b981; }
+
+.nav-links a{
+margin:0 12px;
+text-decoration:none;
+color:#555;
+font-weight:600;
+}
+
+/* HERO (تم تحسينه) */
+.hero{
+text-align:center;
+padding:110px 20px 90px;
+background:linear-gradient(180deg,#111827,#1f2937);
+color:white;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+opacity:0.85;
+}
+
+.hero h1 span{ color:#10b981; }
+
+/* CONTAINER (مسافات مريحة) */
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+padding:60px 20px;
+margin-top:-40px;
+}
+
+/* CARD (مظهر أنظف) */
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+width:340px;
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:10px;
+outline:none;
+}
+
+input:focus{
+border-color:#10b981;
+box-shadow:0 0 0 4px #10b98120;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#10b981;
+color:white;
+cursor:pointer;
+font-weight:bold;
+margin-bottom:8px;
+transition:0.2s;
+}
+
+button:hover{ background:#059669; }
+
+.btn-blue{ background:#0ea5e9; }
+
+#qrDisplay{
+display:flex;
+justify-content:center;
+margin-top:15px;
+}
+
+/* FAQ */
+.features{
+padding:80px 20px;
+text-align:center;
+background:white;
+margin-top:60px;
+}
+
+.features h2{
+margin-bottom:40px;
+font-size:30px;
+}
+
+.features-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1000px;
+margin:auto;
+}
+
+.feature{
+background:#f9fafb;
+padding:22px;
+border-radius:15px;
+border:1px solid #eee;
+}
+
+/* تحسين الجوال */
+@media(max-width:768px){
+.navbar{
+padding:15px 20px;
+flex-direction:column;
+gap:10px;
+}
+
+.hero h1{
+font-size:30px;
+}
+
+.container{
+gap:20px;
+padding:40px 15px;
+}
+
+.card{
+width:100%;
+}
+}
+
+</style>
 </head>
+
 <body>
 
-<nav class="navbar">
-    <div class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="#10b981" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.6 16L15 16.5C14.5 16.7 12.4 15.1 11.2 13.9C10 12.7 8.4 10.6 8.6 10.1L9.1 8.5C9.2 8.1 9.1 7.7 8.9 7.4L7.5 5.3C7.2 4.9 6.7 4.7 6.2 4.9L4.8 5.4C4.1 5.7 3.7 6.4 3.9 7.1C4.4 10.2 6 14.1 8.9 17C11.8 19.9 15.7 21.5 18.8 22C19.5 22.1 20.2 21.7 20.5 21L21 19.6C21.2 19.1 21 18.6 20.6 18.3L18.5 16.9C18.2 16.7 17.8 16.7 17.5 16.8L16.6 16Z"/></svg>
-        HATIF<span>.</span>
-    </div>
-    <div class="nav-links">
-        <a href="#">الأسئلة الشائعة</a>
-        <a href="#">جولة في النظام</a>
-        <a href="#">مركز المساعدة</a>
-        <a href="#" class="btn-try">جرب هاتف الآن مجاناً</a>
-    </div>
-</nav>
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="logo">📱 مساعد<span>الواتس</span></div>
 
-<div class="hero-section">
-    <h1>كيف يمكننا <span>مساعدتك؟</span></h1>
-    <p>أدوات ذكية لتسهيل تواصل عملائك عبر الواتساب</p>
+<div class="nav-links">
+<a href="#faq">الأسئلة الشائعة</a>
+<a href="#tools">الأدوات</a>
+</div>
 </div>
 
-<div class="container" id="container">
-    <div class="card" id="linkCard">
-        <h2>📲 رابط واتساب</h2>
-        <input type="text" id="phone1" placeholder="05XXXXXXXX">
-        <input type="text" id="msg1" placeholder="اكتب رسالة (اختياري)">
-        <button onclick="genLink()">إنشاء الرابط</button>
-
-        <div id="linkArea" class="result-area">
-            <input type="text" id="finalLink" readonly onclick="this.select()" style="background: #f0fdf4; border-color: #10b981;">
-            <button onclick="copyLink()">📋 نسخ الرابط</button>
-            <button onclick="openLink()" class="btn-blue">🚀 فتح واتساب</button>
-        </div>
-    </div>
-
-    <div class="card" id="qrCard">
-        <h2>🔳 كود QR</h2>
-        <input type="text" id="phone2" placeholder="05XXXXXXXX">
-        <input type="text" id="msg2" placeholder="اكتب رسالة (اختياري)">
-        <button onclick="genQR()">إنشاء QR</button>
-        <div id="qrDisplay"></div>
-    </div>
+<!-- HERO (مفصول ومرتب) -->
+<div class="hero">
+<h1>أنشئ رابط <span>واتساب</span> احترافي</h1>
+<p>أداة مجانية لإنشاء روابط واتساب و QR Code بسهولة وبشكل احترافي</p>
 </div>
 
-<div class="features">
-    <h2>لماذا تختار أدواتنا؟</h2>
-    <div class="features-grid">
-        <div class="feature"><h3>🚀 سرعة فائقة</h3><p>روابط مباشرة تعمل على كافة الأجهزة والمتصفحات.</p></div>
-        <div class="feature"><h3>🛡️ خصوصية تامة</h3><p>لا نقوم بتخزين أي أرقام أو رسائل خاصة بك.</p></div>
-        <div class="feature"><h3>📊 مظهر احترافي</h3><p>حول رقمك الطويل إلى كود QR أنيق وسهل المسح.</p></div>
-    </div>
+<!-- TOOLS -->
+<div class="container" id="tools">
+
+<div class="card">
+<h2>📲 رابط واتساب</h2>
+
+<input type="text" id="phone1" placeholder="05XXXXXXXX">
+<input type="text" id="msg1" placeholder="رسالة (اختياري)">
+
+<button onclick="genLink()">إنشاء الرابط</button>
+
+<input type="text" id="finalLink" readonly>
+
+<button onclick="copyLink()">نسخ الرابط</button>
+<button class="btn-blue" onclick="openLink()">فتح واتساب</button>
 </div>
+
+<div class="card">
+<h2>🔳 QR Code</h2>
+
+<input type="text" id="phone2" placeholder="05XXXXXXXX">
+<input type="text" id="msg2" placeholder="رسالة (اختياري)">
+
+<button onclick="genQR()">إنشاء QR</button>
+
+<div id="qrDisplay"></div>
+</div>
+
+</div>
+
+<!-- FAQ -->
+<section class="features" id="faq">
+
+<h2>الأسئلة الشائعة</h2>
+
+<div class="features-grid">
+
+<div class="feature">
+<h3>كيف أنشئ رابط واتساب؟</h3>
+<p>اكتب الرقم والرسالة ثم اضغط إنشاء.</p>
+</div>
+
+<div class="feature">
+<h3>هل الخدمة مجانية؟</h3>
+<p>نعم مجانية بالكامل بدون تسجيل.</p>
+</div>
+
+<div class="feature">
+<h3>هل يتم حفظ البيانات؟</h3>
+<p>لا يتم حفظ أي بيانات.</p>
+</div>
+
+<div class="feature">
+<h3>هل يعمل على الجوال؟</h3>
+<p>نعم متوافق مع كل الأجهزة.</p>
+</div>
+
+<div class="feature">
+<h3>ما فائدة QR؟</h3>
+<p>يسهل فتح واتساب عبر الكاميرا.</p>
+</div>
+
+<div class="feature">
+<h3>هل يدعم واتساب بزنس؟</h3>
+<p>نعم يعمل مع العادي والبزنس.</p>
+</div>
+
+</div>
+
+</section>
 
 <script>
-    function getWaLink(phoneId, msgId) {
-        let p = document.getElementById(phoneId).value.replace(/\D/g, '');
-        let m = document.getElementById(msgId).value;
-        if (!p) return null;
-        if (p.startsWith('0')) p = '966' + p.substring(1);
-        else if (p.length === 9) p = '966' + p;
-        return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
-    }
 
-    function genLink() {
-        let link = getWaLink('phone1','msg1');
-        if(!link) { alert("يرجى إدخال الرقم"); return; }
-        document.getElementById('finalLink').value = link;
-        document.getElementById('linkArea').style.display = 'block';
-    }
+function getLink(phone,msg){
+let p=document.getElementById(phone).value.replace(/\D/g,'');
+let m=document.getElementById(msg).value;
 
-    function copyLink() {
-        let linkInput = document.getElementById('finalLink');
-        linkInput.select();
-        navigator.clipboard.writeText(linkInput.value);
-        alert("تم نسخ الرابط بنجاح! ✅");
-    }
+if(!p) return null;
 
-    function openLink() {
-        let link = document.getElementById('finalLink').value;
-        if (link) window.open(link, "_blank");
-    }
+if(p.startsWith('0')) p='966'+p.substring(1);
+else if(p.length===9) p='966'+p;
 
-    function genQR() {
-        let container = document.getElementById("qrDisplay");
-        let link = getWaLink('phone2','msg2');
-        if (!link) { alert("يرجى إدخال رقم صحيح"); return; }
-        container.innerHTML = "";
-        new QRCode(container, { text: link, width: 160, height: 160 });
-    }
+return "https://wa.me/"+p+(m?"?text="+encodeURIComponent(m):"");
+}
+
+function genLink(){
+let link=getLink('phone1','msg1');
+if(!link) return alert("أدخل رقم");
+document.getElementById('finalLink').value=link;
+}
+
+function copyLink(){
+let input=document.getElementById('finalLink');
+input.select();
+navigator.clipboard.writeText(input.value);
+alert("تم النسخ");
+}
+
+function openLink(){
+let link=document.getElementById('finalLink').value;
+window.open(link,'_blank');
+}
+
+function genQR(){
+let c=document.getElementById("qrDisplay");
+let link=getLink('phone2','msg2');
+if(!link) return alert("أدخل رقم");
+c.innerHTML="";
+new QRCode(c,{text:link,width:160,height:160});
+}
+
 </script>
 
 </body>

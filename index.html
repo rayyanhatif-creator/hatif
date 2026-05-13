@@ -1,117 +1,155 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>HATIF | إنشاء رابط واتساب مباشر و QR Code احترافي</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title>HATIF | إنشاء رابط واتساب مباشر و QR Code احترافي مجاناً</title>
+    <meta name="description" content="أداة هاتف (HATIF) لإنشاء رابط واتساب مباشر، تحويل رقم الجوال إلى رابط واتس سريع، وصناعة كود QR احترافي. أفضل وسيلة للتواصل السريع في السعودية والخليج.">
+    <meta name="keywords" content="رابط واتساب, إنشاء رابط واتساب, تحويل الرقم الى رابط, qr code واتساب, واتساب ويب, تسويق واتساب, رابط واتساب مباشر, صنع رابط واتس, تحويل رقمك لرابط">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<style>
-/* ... (نفس تنسيقاتك الرائعة السابقة) ... */
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Segoe UI',sans-serif;background:#f5f7f6;color:#111827;}
-.navbar{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:18px 50px;background:rgba(255,255,255,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.4);}
-.logo{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:bold;}.logo span{color:#10b981;}
-.nav-links{display:flex;align-items:center;gap:25px;}.nav-links a{text-decoration:none;font-size:14px;font-weight:600;color:#4b5563;}
-.btn-try{padding:10px 18px;background:linear-gradient(135deg,#10b981,#059669);border-radius:12px;color:white !important;}
-.hero{padding:100px 20px;text-align:center;}.hero h1{font-size:48px;margin-bottom:15px;}.hero h1 span{color:#10b981;}
-.container{display:flex;justify-content:center;gap:30px;padding:20px;flex-wrap:wrap;margin-top:-50px;}
-.card{width:360px;padding:30px;border-radius:28px;background:white;box-shadow:0 15px 35px rgba(0,0,0,0.08);transition:0.4s;}
-input{width:100%;padding:15px;border-radius:16px;border:1px solid #e5e7eb;margin-bottom:15px;font-family:inherit;}
-button{width:100%;padding:15px;border:none;border-radius:16px;cursor:pointer;font-weight:bold;margin-bottom:10px;color:white;background:linear-gradient(135deg,#10b981,#059669);}
-.btn-blue{background:linear-gradient(135deg,#0ea5e9,#0284c7);}
-.btn-dark{background:linear-gradient(135deg,#111827,#374151);}
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#f5f7f6;color:#111827;line-height: 1.6;}
+        .navbar{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:18px 50px;background:rgba(255,255,255,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.4);}
+        .logo{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:bold;text-decoration:none;color:#111827;}
+        .logo span{color:#10b981;}
+        .nav-links{display:flex;align-items:center;gap:25px;}.nav-links a{text-decoration:none;font-size:14px;font-weight:600;color:#4b5563;}
+        .btn-try{padding:10px 18px;background:linear-gradient(135deg,#10b981,#059669);border-radius:12px;color:white !important;}
+        
+        .hero{padding:80px 20px;text-align:center;}
+        .hero h1{font-size:42px;margin-bottom:15px;}
+        .hero h1 span{color:#10b981;}
+        .hero p{color:#6b7280; max-width:700px; margin:0 auto 20px; font-size:18px;}
 
-/* منطقة النتيجة - مخفية افتراضياً */
-.result-area{
-    margin-top:18px;
-    padding-top:18px;
-    border-top:2px dashed #e5e7eb;
-    display:none; /* هذي أهم نقطة */
-    animation:fadeIn 0.5s ease-in-out;
-}
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .container{display:flex;justify-content:center;gap:30px;padding:20px;flex-wrap:wrap;margin-top:20px;}
+        .card{width:380px;padding:30px;border-radius:28px;background:white;box-shadow:0 15px 35px rgba(0,0,0,0.08);transition:0.4s;border:1px solid #f0f0f0;}
+        .card h2{margin-bottom:20px; font-size:22px; display:flex; align-items:center; gap:10px;}
+        
+        input{width:100%;padding:15px;border-radius:16px;border:1px solid #e5e7eb;margin-bottom:15px;font-family:inherit;outline:none;transition:0.3s;}
+        input:focus{border-color:#10b981; box-shadow:0 0 0 4px rgba(16,185,129,0.1);}
+        
+        button{width:100%;padding:15px;border:none;border-radius:16px;cursor:pointer;font-weight:bold;margin-bottom:10px;color:white;background:linear-gradient(135deg,#10b981,#059669);transition:0.3s;}
+        button:hover{opacity:0.9; transform:translateY(-2px);}
+        .btn-blue{background:linear-gradient(135deg,#0ea5e9,#0284c7);}
+        .btn-dark{background:linear-gradient(135deg,#111827,#374151);}
 
-#qrDisplay{display:flex;justify-content:center;margin-top:20px;min-height:100px;}
-.toast{position:fixed;bottom:20px;left:20px;background:#111827;color:white;padding:12px 20px;border-radius:12px;opacity:0;transition:0.4s;z-index:9999;}
-.toast.show{opacity:1;}
-</style>
+        .result-area{
+            margin-top:18px;
+            padding-top:18px;
+            border-top:2px dashed #e5e7eb;
+            display:none; 
+            animation:fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        #qrDisplay{display:flex;justify-content:center;margin-top:20px;min-height:100px;}
+        #qrDisplay img{padding:10px; background:#fff; border-radius:12px; border:1px solid #eee;}
+
+        .toast{position:fixed;bottom:20px;right:20px;background:#111827;color:white;padding:12px 25px;border-radius:12px;opacity:0;transition:0.4s;z-index:9999;box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+        .toast.show{opacity:1;}
+
+        /* قسم السيو المخفي لتحسين الأرشفة */
+        .seo-content { display:none; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .hero h1 { font-size: 32px; }
+            .card { width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
 <nav class="navbar">
-    <div class="logo">HATIF<span>.</span></div>
+    <a href="#" class="logo">HATIF<span>.</span></a>
     <div class="nav-links">
-        <a href="#">الأسئلة الشائعة</a>
+        <a href="#about">ماهو هاتف؟</a>
         <a href="#" class="btn-try">ابدأ الآن مجاناً</a>
     </div>
 </nav>
 
 <section class="hero">
-    <h1>أنشئ رابط <span>واتساب</span> احترافي</h1>
-    <p>بسهولة وبضغطة زر واحدة</p>
+    <h1>أسرع طريقة لإنشاء <span>رابط واتساب</span></h1>
+    <p>حول رقم جوالك إلى رابط مباشر أو كود QR ضوئي لتسهيل تواصل عملائك معك. أداة احترافية، مجانية، وبدون إعلانات.</p>
 </section>
 
 <div class="container">
     <div class="card">
-        <h2>📲 رابط واتساب</h2>
-        <input type="text" id="phone1" placeholder="05XXXXXXXX">
-        <input type="text" id="msg1" placeholder="اكتب رسالة (اختياري)">
-        <button onclick="genLink()">إنشاء الرابط</button>
+        <h2>📲 رابط واتساب سريع</h2>
+        <input type="text" id="phone1" placeholder="مثال: 05XXXXXXXX">
+        <input type="text" id="msg1" placeholder="اكتب رسالة ترحيبية (اختياري)">
+        <button onclick="genLink()">إنشاء الرابط الآن</button>
 
         <div class="result-area" id="linkArea">
-            <input type="text" id="finalLink" readonly style="background:#f0fdf4;border-color:#10b981;">
+            <p style="font-size:12px; color:#6b7280; margin-bottom:8px;">رابطك جاهز للاستخدام:</p>
+            <input type="text" id="finalLink" readonly style="background:#f0fdf4;border-color:#10b981; color:#065f46; font-weight:600;">
             <button onclick="copyLink()">📋 نسخ الرابط</button>
-            <button onclick="openLink()" class="btn-blue">🚀 فتح واتساب</button>
+            <button onclick="openLink()" class="btn-blue">🚀 تجربة الرابط</button>
         </div>
     </div>
 
     <div class="card">
-        <h2>🔳 كود QR</h2>
-        <input type="text" id="phone2" placeholder="05XXXXXXXX">
-        <input type="text" id="msg2" placeholder="اكتب رسالة (اختياري)">
-        <button onclick="genQR()">إنشاء QR</button>
+        <h2>🔳 كود QR للواتساب</h2>
+        <input type="text" id="phone2" placeholder="مثال: 05XXXXXXXX">
+        <input type="text" id="msg2" placeholder="اكتب رسالة تلقائية (اختياري)">
+        <button onclick="genQR()">توليد كود QR</button>
+        
         <div id="qrDisplay"></div>
-        <button id="downloadBtn" class="btn-dark" style="display:none;" onclick="downloadQR()">📥 حفظ QR كصورة</button>
+        
+        <div class="result-area" id="qrActionArea" style="border-top:none;">
+            <button id="downloadBtn" class="btn-dark" onclick="downloadQR()">📥 تحميل الكود بصيغة PNG</button>
+        </div>
     </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="seo-content">
+    <h2>أفضل صانع روابط واتساب في السعودية</h2>
+    <p>تتيح لك أداة هاتف إنشاء رابط wa me بكل سهولة. تحويل رقم الواتس الى رابط يغنيك عن كتابة الرقم يدوياً. استخدم مولد كود QR لتسهيل الوصول لمتجرك.</p>
+</div>
+
+<div class="toast" id="toast">تم النسخ بنجاح!</div>
 
 <script>
 function showToast(msg){
     let toast = document.getElementById("toast");
     toast.innerText = msg;
     toast.classList.add("show");
-    setTimeout(() => { toast.classList.remove("show"); }, 2500);
+    setTimeout(() => { toast.classList.remove("show"); }, 3000);
 }
 
 function getWaLink(phoneId, msgId){
     let p = document.getElementById(phoneId).value.replace(/\D/g, '');
     let m = document.getElementById(msgId).value;
+    
     if(!p || p.length < 9) return null;
+    
+    // تعديل الرقم ليدعم التنسيق الدولي (السعودية كمثال)
     if(p.startsWith('0')) p = '966' + p.substring(1);
     else if(p.length === 9) p = '966' + p;
+    
     return "https://wa.me/" + p + (m ? "?text=" + encodeURIComponent(m) : "");
 }
 
 function genLink() {
     let link = getWaLink('phone1', 'msg1');
     if (!link) {
-        showToast("يرجى إدخال رقم صحيح (مثال: 05XXXXXXXX)");
+        showToast("❌ خطأ: يرجى إدخال رقم جوال صحيح");
         document.getElementById('linkArea').style.display = 'none';
         return;
     }
     document.getElementById('finalLink').value = link;
-    document.getElementById('linkArea').style.display = 'block'; // إظهار منطقة النسخ
-    showToast("تم تجهيز الرابط ✅");
+    document.getElementById('linkArea').style.display = 'block';
+    showToast("تم إنشاء الرابط بنجاح ✅");
 }
 
 function copyLink(){
     let input = document.getElementById('finalLink');
     input.select();
     navigator.clipboard.writeText(input.value);
-    showToast("تم النسخ للملحوظات ✅");
+    showToast("تم النسخ إلى الحافظة 📋");
 }
 
 function openLink(){
@@ -122,11 +160,24 @@ function openLink(){
 function genQR(){
     let container = document.getElementById("qrDisplay");
     let link = getWaLink('phone2','msg2');
-    if(!link){ showToast("يرجى إدخال رقم صحيح"); return; }
+    
+    if(!link){ 
+        showToast("❌ خطأ: يرجى إدخال رقم صحيح"); 
+        return; 
+    }
+    
     container.innerHTML = "";
-    new QRCode(container, { text: link, width: 180, height: 180 });
-    document.getElementById("downloadBtn").style.display = "block";
-    showToast("تم إنشاء QR بنجاح 🔥");
+    new QRCode(container, {
+        text: link,
+        width: 180,
+        height: 180,
+        colorDark : "#111827",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+    
+    document.getElementById("qrActionArea").style.display = "block";
+    showToast("تم إنشاء كود QR بنجاح 🔥");
 }
 
 function downloadQR(){
@@ -134,9 +185,10 @@ function downloadQR(){
     if(!img) return;
     let link = document.createElement('a');
     link.href = img.src;
-    link.download = "HATIF-QR.png";
+    link.download = "WhatsApp-QR-HATIF.png";
     link.click();
 }
 </script>
+
 </body>
 </html>

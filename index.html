@@ -593,7 +593,7 @@ class="btn-dark"
 style="display:none;"
 onclick="downloadQR()"
 >
-📥 حفظ QR كصورة
+🖼️ حفظ QR كصورة
 </button>
 
 </div>
@@ -615,18 +615,15 @@ onclick="downloadQR()"
 </h2>
 
 <p>
-يتيح لك رابط واتساب المباشر التواصل مع العملاء والأصدقاء بسرعة بدون الحاجة إلى حفظ الرقم.
-يمكنك استخدام رابط واتساب للأعمال في المتاجر الإلكترونية وصفحات الهبوط وإنستقرام وتيك توك وسناب شات لزيادة سرعة التواصل وتحسين تجربة العملاء.
+يتيح لك رابط واتساب المباشر التواصل مع العملاء والأصدقاء بسرعة بدون الحاجة إلى حفظ الرقم. يمكنك استخدام رابط واتساب للأعمال في المتاجر الإلكترونية وصفحات الهبوط وإنستقرام وتيك توك وسناب شات لزيادة سرعة التواصل وتحسين تجربة العملاء.
 </p>
 
 <p>
-من خلال أداة HATIF يمكنك إنشاء رابط واتساب مباشر برقمك خلال ثوانٍ مع إمكانية إضافة رسالة تلقائية وإنشاء QR Code احترافي لواتساب.
-الأداة تدعم أرقام السعودية وجميع الدول وتساعدك في إنشاء رابط WhatsApp رسمي باستخدام wa.me بسهولة.
+من خلال أداة HATIF يمكنك إنشاء رابط واتساب مباشر برقمك خلال ثوانٍ مع إمكانية إضافة رسالة تلقائية وإنشاء QR Code احترافي لواتساب. الأداة تدعم أرقام السعودية وجميع الدول وتساعدك في إنشاء رابط WhatsApp رسمي باستخدام wa.me بسهولة.
 </p>
 
 <p>
 كثير من أصحاب المتاجر والشركات يستخدمون مولد رابط واتساب لتحويل الزوار إلى محادثات مباشرة داخل WhatsApp Business مما يساعد على زيادة المبيعات وسهولة التواصل مع العملاء.
-كما يمكنك مشاركة رابط واتساب في البايو أو الإعلانات أو صفحات المنتجات بسهولة.
 </p>
 
 <div class="seo-grid">
@@ -807,17 +804,31 @@ showToast("تم إنشاء QR بنجاح 🔥");
 
 function downloadQR(){
 
-let img = document.querySelector("#qrDisplay img");
+let canvas = document.querySelector("#qrDisplay canvas");
 
-if(!img) return;
+if(!canvas){
 
-let link = document.createElement('a');
+showToast("لا يوجد QR للحفظ");
 
-link.href = img.src;
+return;
 
-link.download = "HATIF-QR.png";
+}
 
-link.click();
+let image = canvas.toDataURL("image/png");
+
+let a = document.createElement("a");
+
+a.href = image;
+
+a.download = "HATIF-QR.png";
+
+document.body.appendChild(a);
+
+a.click();
+
+document.body.removeChild(a);
+
+showToast("تم حفظ الصورة 🖼️");
 
 }
 

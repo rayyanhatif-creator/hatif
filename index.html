@@ -29,6 +29,10 @@ QR Code WhatsApp
 
 <style>
 
+html{
+scroll-behavior:smooth;
+}
+
 *{
 margin:0;
 padding:0;
@@ -244,7 +248,7 @@ z-index:9999;
 opacity:1;
 }
 
-/* HELP CENTER STYLE */
+/* HELP CENTER */
 
 .help-section{
 padding:110px 20px;
@@ -267,16 +271,12 @@ font-size:17px;
 color:#6b7280;
 }
 
-/* GRID */
-
 .help-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:22px;
 margin-bottom:80px;
 }
-
-/* CARD */
 
 .help-card{
 background:white;
@@ -318,6 +318,10 @@ color:#6b7280;
 
 /* MOST READ */
 
+.most-read{
+margin-top:30px;
+}
+
 .most-read h2{
 font-size:42px;
 margin-bottom:30px;
@@ -337,6 +341,7 @@ gap:20px;
 padding:24px;
 border-bottom:1px solid #f3f4f6;
 transition:0.3s;
+align-items:flex-start;
 }
 
 .read-item:last-child{
@@ -433,8 +438,15 @@ HATIF<span>.</span>
 </div>
 
 <div class="nav-links">
-<a href="#">الأسئلة الشائعة</a>
-<a href="#" class="btn-start">ابدأ الآن</a>
+
+<a href="#helpSection">
+وش فايدتها؟
+</a>
+
+<a href="#tools" class="btn-start">
+ابدأ الآن
+</a>
+
 </div>
 
 </nav>
@@ -455,7 +467,7 @@ HATIF<span>.</span>
 
 <!-- TOOLS -->
 
-<div class="container">
+<div class="container" id="tools">
 
 <!-- LINK -->
 
@@ -527,16 +539,16 @@ onclick="downloadQR()"
 
 <!-- HELP CENTER -->
 
-<section class="help-section">
+<section class="help-section" id="helpSection">
 
 <div class="help-header">
 
 <h2>
-تصفح حسب القسم
+وش فايدة رابط الواتساب المباشر؟
 </h2>
 
 <p>
-كل ما تحتاجه لإنشاء رابط واتساب مباشر و QR Code احترافي بسهولة.
+يساعدك رابط الواتساب المباشر على التواصل السريع مع العملاء والأصدقاء بدون حفظ الرقم.
 </p>
 
 </div>
@@ -550,11 +562,11 @@ onclick="downloadQR()"
 </div>
 
 <h3>
-رابط واتساب مباشر
+رابط مباشر
 </h3>
 
 <p>
-أنشئ رابط واتساب مباشر بسهولة بدون حفظ الرقم مع دعم WhatsApp Business.
+حوّل رقمك إلى رابط واتساب رسمي خلال ثوانٍ بسهولة.
 </p>
 
 </div>
@@ -566,11 +578,11 @@ onclick="downloadQR()"
 </div>
 
 <h3>
-QR Code واتساب
+QR احترافي
 </h3>
 
 <p>
-أنشئ QR Code احترافي لرقمك وشاركه بسرعة مع العملاء والزوار.
+أنشئ QR Code قابل للحفظ والمشاركة والطباعة.
 </p>
 
 </div>
@@ -582,11 +594,11 @@ QR Code واتساب
 </div>
 
 <h3>
-سرعة وسهولة
+سريع وسهل
 </h3>
 
 <p>
-إنشاء رابط واتساب خلال ثوانٍ بدون تسجيل أو خطوات معقدة.
+بدون تسجيل أو خطوات معقدة، كل شيء بضغطة زر.
 </p>
 
 </div>
@@ -602,7 +614,7 @@ QR Code واتساب
 </h3>
 
 <p>
-يدعم أرقام السعودية وجميع دول العالم مع إنشاء رابط wa.me رسمي.
+يدعم أرقام السعودية وجميع دول العالم بسهولة.
 </p>
 
 </div>
@@ -618,7 +630,7 @@ QR Code واتساب
 </h3>
 
 <p>
-أضف رسالة تلقائية تظهر مباشرة عند فتح محادثة الواتساب.
+أضف رسالة تظهر تلقائياً عند فتح المحادثة.
 </p>
 
 </div>
@@ -634,7 +646,7 @@ QR Code واتساب
 </h3>
 
 <p>
-مناسب للمتاجر الإلكترونية والإعلانات وصفحات الهبوط والسوشال ميديا.
+مناسب للمتاجر الإلكترونية وصفحات التواصل والإعلانات.
 </p>
 
 </div>
@@ -864,4 +876,5 @@ showToast("تم حفظ الصورة 🖼️");
 </script>
 
 </body>
+
 </html>

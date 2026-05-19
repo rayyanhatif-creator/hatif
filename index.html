@@ -6,65 +6,24 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<!-- SEO -->
+<title>HATIF | إنشاء رابط واتساب مباشر و QR Code</title>
 
-<title>HATIF | إنشاء رابط واتساب مباشر و QR Code احترافي</title>
-
-<meta name="description" content="أنشئ رابط واتساب مباشر بسهولة مع إمكانية إنشاء QR Code احترافي لرقمك خلال ثوانٍ. أداة مجانية وسريعة لإنشاء روابط WhatsApp الرسمية." />
+<meta name="description" content="أنشئ رابط واتساب مباشر و QR Code احترافي بسهولة خلال ثوانٍ.">
 
 <meta name="keywords" content="
 رابط واتساب,
 إنشاء رابط واتساب,
-رابط واتساب مباشر,
 واتساب مباشر,
-واتساب برابط,
+QR واتساب,
 wa.me,
 واتساب بزنس,
-رابط واتساب برقم,
-مولد رابط واتساب,
-تحويل رقم إلى رابط واتساب,
-QR واتساب,
-QR Code واتساب,
-كود واتساب,
-إنشاء QR,
-واتساب السعودية,
-رابط دردشة واتساب,
-واتساب بدون حفظ الرقم,
-رابط مراسلة واتساب,
-واتساب API,
-رابط واتساب احترافي,
-واتساب سريع,
-واتساب للأعمال,
 WhatsApp Link Generator,
-WhatsApp QR Code,
-Direct WhatsApp Link
+QR Code WhatsApp
 "/>
 
-<meta name="robots" content="index, follow"/>
-<meta name="author" content="HATIF"/>
-<meta name="theme-color" content="#10b981"/>
-
-<!-- OPEN GRAPH -->
-
-<meta property="og:title" content="HATIF | إنشاء رابط واتساب مباشر"/>
-<meta property="og:description" content="أنشئ رابط واتساب مباشر و QR Code احترافي بسهولة وبضغطة زر."/>
-<meta property="og:type" content="website"/>
-
-<!-- TWITTER -->
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="HATIF | رابط واتساب مباشر"/>
-<meta name="twitter:description" content="أفضل أداة لإنشاء رابط واتساب مباشر وكود QR احترافي."/>
-
-<!-- CANONICAL -->
-
-<link rel="canonical" href="https://hatif.site/"/>
-
-<!-- FAVICON -->
+<meta name="theme-color" content="#10b981">
 
 <link rel="icon" href="favicon.png" type="image/png">
-
-<!-- QR LIBRARY -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -78,7 +37,7 @@ box-sizing:border-box;
 
 body{
 font-family:'Segoe UI',sans-serif;
-background:#f5f7f6;
+background:#f8fafc;
 color:#111827;
 overflow-x:hidden;
 }
@@ -93,13 +52,13 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:18px 50px;
-background:rgba(255,255,255,0.7);
+background:rgba(255,255,255,0.85);
 backdrop-filter:blur(16px);
-border-bottom:1px solid rgba(255,255,255,0.4);
+border-bottom:1px solid #e5e7eb;
 }
 
 .logo{
-font-size:26px;
+font-size:28px;
 font-weight:800;
 }
 
@@ -109,14 +68,14 @@ color:#10b981;
 
 .nav-links{
 display:flex;
-gap:25px;
 align-items:center;
+gap:24px;
 }
 
 .nav-links a{
 text-decoration:none;
+font-size:15px;
 font-weight:600;
-font-size:14px;
 color:#4b5563;
 transition:0.3s;
 }
@@ -125,49 +84,25 @@ transition:0.3s;
 color:#10b981;
 }
 
-.btn-try{
-padding:10px 18px;
-background:linear-gradient(135deg,#10b981,#059669);
+.btn-start{
+padding:11px 20px;
 border-radius:14px;
+background:linear-gradient(135deg,#10b981,#059669);
 color:white !important;
 }
 
 /* HERO */
 
 .hero{
-padding:110px 20px 90px;
+padding:110px 20px 70px;
 text-align:center;
-position:relative;
-}
-
-.hero::before{
-content:"";
-position:absolute;
-width:300px;
-height:300px;
-background:rgba(16,185,129,0.08);
-border-radius:50%;
-top:-120px;
-right:-100px;
-}
-
-.hero::after{
-content:"";
-position:absolute;
-width:280px;
-height:280px;
-background:rgba(14,165,233,0.08);
-border-radius:50%;
-bottom:-120px;
-left:-100px;
 }
 
 .hero h1{
-font-size:54px;
-margin-bottom:20px;
+font-size:58px;
 line-height:1.4;
-position:relative;
-z-index:2;
+margin-bottom:18px;
+font-weight:800;
 }
 
 .hero h1 span{
@@ -175,40 +110,31 @@ color:#10b981;
 }
 
 .hero p{
-font-size:19px;
+font-size:18px;
 color:#6b7280;
-position:relative;
-z-index:2;
 }
 
-/* SEO HIDDEN */
-
-.seo-hidden{
-display:none;
-}
-
-/* CONTAINER */
+/* TOOL SECTION */
 
 .container{
 display:flex;
 justify-content:center;
-gap:30px;
-padding:20px;
+gap:28px;
 flex-wrap:wrap;
-margin-top:-20px;
-position:relative;
-z-index:2;
+padding:20px;
+margin-top:20px;
 }
 
 /* CARD */
 
 .card{
-width:370px;
+width:380px;
 background:white;
-padding:30px;
+padding:32px;
 border-radius:30px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-transition:0.35s;
+border:1px solid #eef2f7;
+box-shadow:0 10px 35px rgba(0,0,0,0.05);
+transition:0.3s;
 }
 
 .card:hover{
@@ -216,8 +142,8 @@ transform:translateY(-8px);
 }
 
 .card h2{
-margin-bottom:22px;
-font-size:26px;
+font-size:28px;
+margin-bottom:24px;
 }
 
 /* INPUT */
@@ -232,11 +158,12 @@ font-size:15px;
 font-family:inherit;
 outline:none;
 transition:0.3s;
+background:#fff;
 }
 
 input:focus{
 border-color:#10b981;
-box-shadow:0 0 0 4px rgba(16,185,129,0.1);
+box-shadow:0 0 0 4px rgba(16,185,129,0.12);
 }
 
 /* BUTTON */
@@ -270,10 +197,10 @@ background:linear-gradient(135deg,#111827,#374151);
 /* RESULT */
 
 .result-area{
+display:none;
 margin-top:18px;
 padding-top:18px;
 border-top:2px dashed #e5e7eb;
-display:none;
 animation:fadeIn .4s ease;
 }
 
@@ -291,12 +218,10 @@ transform:translateY(0);
 
 }
 
-/* QR */
-
 #qrDisplay{
 display:flex;
 justify-content:center;
-margin-top:20px;
+margin-top:22px;
 min-height:100px;
 }
 
@@ -308,8 +233,8 @@ bottom:20px;
 left:20px;
 background:#111827;
 color:white;
-padding:12px 20px;
-border-radius:12px;
+padding:13px 22px;
+border-radius:14px;
 opacity:0;
 transition:0.4s;
 z-index:9999;
@@ -319,143 +244,131 @@ z-index:9999;
 opacity:1;
 }
 
-/* SEO SECTION */
+/* HELP CENTER STYLE */
 
-.seo-section{
-padding:90px 20px;
-}
-
-.seo-box{
-max-width:1150px;
+.help-section{
+padding:110px 20px;
+max-width:1250px;
 margin:auto;
-background:linear-gradient(145deg,#ffffff,#f0fdf4);
-border:1px solid #d1fae5;
-border-radius:36px;
-padding:60px 35px;
-box-shadow:0 20px 50px rgba(16,185,129,0.08);
-position:relative;
-overflow:hidden;
 }
 
-.seo-box::before{
-content:"";
-position:absolute;
-top:-100px;
-left:-100px;
-width:260px;
-height:260px;
-background:rgba(16,185,129,0.08);
-border-radius:50%;
+.help-header{
+margin-bottom:40px;
 }
 
-.seo-box::after{
-content:"";
-position:absolute;
-bottom:-120px;
-right:-120px;
-width:280px;
-height:280px;
-background:rgba(14,165,233,0.08);
-border-radius:50%;
+.help-header h2{
+font-size:48px;
+margin-bottom:12px;
+font-weight:800;
 }
 
-.seo-badge{
-display:inline-block;
-padding:10px 18px;
-background:linear-gradient(135deg,#10b981,#059669);
-color:white;
-border-radius:999px;
-font-size:14px;
-font-weight:600;
-margin-bottom:25px;
+.help-header p{
+font-size:17px;
+color:#6b7280;
 }
 
-.seo-box h2{
-font-size:42px;
-margin-bottom:25px;
-color:#111827;
-line-height:1.4;
-position:relative;
-z-index:2;
-}
+/* GRID */
 
-.seo-box p{
-font-size:18px;
-line-height:2.1;
-color:#4b5563;
-margin-bottom:22px;
-position:relative;
-z-index:2;
-}
-
-.seo-grid{
+.help-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:22px;
-margin-top:45px;
-margin-bottom:50px;
-position:relative;
-z-index:2;
+margin-bottom:80px;
 }
 
-.seo-card{
+/* CARD */
+
+.help-card{
 background:white;
-padding:28px;
+border:1px solid #e5e7eb;
 border-radius:24px;
-border:1px solid #ecfdf5;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-transition:0.35s;
+padding:30px;
+transition:0.3s;
+cursor:pointer;
 }
 
-.seo-card:hover{
-transform:translateY(-8px);
+.help-card:hover{
+transform:translateY(-6px);
+border-color:#10b981;
+box-shadow:0 12px 30px rgba(0,0,0,0.06);
 }
 
-.seo-icon{
-font-size:40px;
-margin-bottom:15px;
+.help-icon{
+width:58px;
+height:58px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:18px;
+background:#f0fdf4;
+font-size:28px;
+margin-bottom:20px;
 }
 
-.seo-card h3{
-font-size:22px;
+.help-card h3{
+font-size:25px;
 margin-bottom:12px;
 }
 
-.seo-card p{
+.help-card p{
 font-size:15px;
-margin:0;
-line-height:1.9;
+line-height:2;
+color:#6b7280;
 }
 
-.features-title{
-font-size:34px;
+/* MOST READ */
+
+.most-read h2{
+font-size:42px;
 margin-bottom:30px;
-position:relative;
-z-index:2;
+font-weight:800;
 }
 
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:18px;
-position:relative;
-z-index:2;
-}
-
-.feature{
+.read-list{
 background:white;
-padding:18px 20px;
-border-radius:18px;
-border:1px solid #dcfce7;
-font-weight:600;
-color:#065f46;
-box-shadow:0 6px 18px rgba(16,185,129,0.06);
+border:1px solid #e5e7eb;
+border-radius:24px;
+overflow:hidden;
+}
+
+.read-item{
+display:flex;
+gap:20px;
+padding:24px;
+border-bottom:1px solid #f3f4f6;
 transition:0.3s;
 }
 
-.feature:hover{
-transform:scale(1.03);
-background:#ecfdf5;
+.read-item:last-child{
+border-bottom:none;
+}
+
+.read-item:hover{
+background:#f9fafb;
+}
+
+.read-item span{
+min-width:56px;
+height:56px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f3f4f6;
+border-radius:16px;
+font-size:18px;
+font-weight:800;
+color:#6b7280;
+}
+
+.read-item h4{
+font-size:22px;
+margin-bottom:8px;
+}
+
+.read-item p{
+font-size:15px;
+color:#6b7280;
+line-height:1.9;
 }
 
 /* MOBILE */
@@ -466,8 +379,12 @@ background:#ecfdf5;
 padding:18px 20px;
 }
 
+.hero{
+padding-top:90px;
+}
+
 .hero h1{
-font-size:36px;
+font-size:38px;
 }
 
 .hero p{
@@ -479,16 +396,24 @@ width:100%;
 max-width:420px;
 }
 
-.seo-box{
-padding:45px 22px;
+.help-header h2{
+font-size:34px;
 }
 
-.seo-box h2{
-font-size:30px;
+.most-read h2{
+font-size:32px;
 }
 
-.features-title{
-font-size:26px;
+.help-card h3{
+font-size:22px;
+}
+
+.read-item{
+padding:20px;
+}
+
+.read-item h4{
+font-size:18px;
 }
 
 }
@@ -509,7 +434,7 @@ HATIF<span>.</span>
 
 <div class="nav-links">
 <a href="#">الأسئلة الشائعة</a>
-<a href="#" class="btn-try">ابدأ الآن مجاناً</a>
+<a href="#" class="btn-start">ابدأ الآن</a>
 </div>
 
 </nav>
@@ -519,16 +444,12 @@ HATIF<span>.</span>
 <section class="hero">
 
 <h1>
-إنشاء رابط <span>واتساب</span> مباشر و QR Code احترافي
+إنشاء رابط <span>واتساب</span> مباشر و QR Code
 </h1>
 
 <p>
-بسهولة وبضغطة زر واحدة
+أنشئ رابط WhatsApp احترافي بسهولة وبضغطة زر.
 </p>
-
-<h2 class="seo-hidden">
-مولد رابط واتساب مباشر - إنشاء QR Code واتساب - رابط واتساب للأعمال
-</h2>
 
 </section>
 
@@ -540,7 +461,9 @@ HATIF<span>.</span>
 
 <div class="card">
 
-<h2>📲 رابط واتساب</h2>
+<h2>
+📲 رابط واتساب
+</h2>
 
 <input type="text" id="phone1" placeholder="05XXXXXXXX">
 
@@ -575,7 +498,9 @@ style="background:#f0fdf4;border-color:#10b981;"
 
 <div class="card">
 
-<h2>🔳 كود QR</h2>
+<h2>
+🔳 كود QR
+</h2>
 
 <input type="text" id="phone2" placeholder="05XXXXXXXX">
 
@@ -600,81 +525,185 @@ onclick="downloadQR()"
 
 </div>
 
-<!-- SEO CONTENT -->
+<!-- HELP CENTER -->
 
-<section class="seo-section">
+<section class="help-section">
 
-<div class="seo-box">
-
-<span class="seo-badge">
-🚀 أداة احترافية لإنشاء روابط واتساب
-</span>
+<div class="help-header">
 
 <h2>
-ما فائدة إنشاء رابط واتساب مباشر؟
+تصفح حسب القسم
 </h2>
 
 <p>
-يتيح لك رابط واتساب المباشر التواصل مع العملاء والأصدقاء بسرعة بدون الحاجة إلى حفظ الرقم. يمكنك استخدام رابط واتساب للأعمال في المتاجر الإلكترونية وصفحات الهبوط وإنستقرام وتيك توك وسناب شات لزيادة سرعة التواصل وتحسين تجربة العملاء.
+كل ما تحتاجه لإنشاء رابط واتساب مباشر و QR Code احترافي بسهولة.
 </p>
-
-<p>
-من خلال أداة HATIF يمكنك إنشاء رابط واتساب مباشر برقمك خلال ثوانٍ مع إمكانية إضافة رسالة تلقائية وإنشاء QR Code احترافي لواتساب. الأداة تدعم أرقام السعودية وجميع الدول وتساعدك في إنشاء رابط WhatsApp رسمي باستخدام wa.me بسهولة.
-</p>
-
-<p>
-كثير من أصحاب المتاجر والشركات يستخدمون مولد رابط واتساب لتحويل الزوار إلى محادثات مباشرة داخل WhatsApp Business مما يساعد على زيادة المبيعات وسهولة التواصل مع العملاء.
-</p>
-
-<div class="seo-grid">
-
-<div class="seo-card">
-<div class="seo-icon">📲</div>
-<h3>رابط واتساب مباشر</h3>
-<p>
-إنشاء رابط WhatsApp رسمي خلال ثوانٍ.
-</p>
-</div>
-
-<div class="seo-card">
-<div class="seo-icon">🔳</div>
-<h3>QR Code احترافي</h3>
-<p>
-إنشاء QR واتساب قابل للمشاركة والطباعة.
-</p>
-</div>
-
-<div class="seo-card">
-<div class="seo-icon">⚡</div>
-<h3>سريع وسهل</h3>
-<p>
-بدون تسجيل وبدون تعقيد.
-</p>
-</div>
 
 </div>
 
-<h3 class="features-title">
-مميزات مولد رابط واتساب HATIF
+<div class="help-grid">
+
+<div class="help-card">
+
+<div class="help-icon">
+📲
+</div>
+
+<h3>
+رابط واتساب مباشر
 </h3>
 
-<div class="features">
+<p>
+أنشئ رابط واتساب مباشر بسهولة بدون حفظ الرقم مع دعم WhatsApp Business.
+</p>
 
-<div class="feature">✅ إنشاء رابط واتساب مباشر مجاناً</div>
+</div>
 
-<div class="feature">✅ تحويل الرقم إلى رابط WhatsApp</div>
+<div class="help-card">
 
-<div class="feature">✅ إنشاء QR Code واتساب</div>
+<div class="help-icon">
+🔳
+</div>
 
-<div class="feature">✅ دعم واتساب بزنس</div>
+<h3>
+QR Code واتساب
+</h3>
 
-<div class="feature">✅ إضافة رسالة تلقائية</div>
+<p>
+أنشئ QR Code احترافي لرقمك وشاركه بسرعة مع العملاء والزوار.
+</p>
 
-<div class="feature">✅ مناسب للمتاجر الإلكترونية</div>
+</div>
 
-<div class="feature">✅ دعم كامل للجوال والكمبيوتر</div>
+<div class="help-card">
 
-<div class="feature">✅ مشاركة الرابط على جميع المنصات</div>
+<div class="help-icon">
+⚡
+</div>
+
+<h3>
+سرعة وسهولة
+</h3>
+
+<p>
+إنشاء رابط واتساب خلال ثوانٍ بدون تسجيل أو خطوات معقدة.
+</p>
+
+</div>
+
+<div class="help-card">
+
+<div class="help-icon">
+🌍
+</div>
+
+<h3>
+دعم جميع الدول
+</h3>
+
+<p>
+يدعم أرقام السعودية وجميع دول العالم مع إنشاء رابط wa.me رسمي.
+</p>
+
+</div>
+
+<div class="help-card">
+
+<div class="help-icon">
+💬
+</div>
+
+<h3>
+رسائل تلقائية
+</h3>
+
+<p>
+أضف رسالة تلقائية تظهر مباشرة عند فتح محادثة الواتساب.
+</p>
+
+</div>
+
+<div class="help-card">
+
+<div class="help-icon">
+🚀
+</div>
+
+<h3>
+للشركات والمتاجر
+</h3>
+
+<p>
+مناسب للمتاجر الإلكترونية والإعلانات وصفحات الهبوط والسوشال ميديا.
+</p>
+
+</div>
+
+</div>
+
+<!-- MOST READ -->
+
+<div class="most-read">
+
+<h2>
+الأكثر استخداماً
+</h2>
+
+<div class="read-list">
+
+<div class="read-item">
+
+<span>01</span>
+
+<div>
+
+<h4>
+إنشاء رابط واتساب مباشر
+</h4>
+
+<p>
+حوّل رقمك إلى رابط WhatsApp رسمي خلال ثوانٍ.
+</p>
+
+</div>
+
+</div>
+
+<div class="read-item">
+
+<span>02</span>
+
+<div>
+
+<h4>
+إنشاء QR Code واتساب
+</h4>
+
+<p>
+أنشئ QR احترافي قابل للحفظ والمشاركة بسهولة.
+</p>
+
+</div>
+
+</div>
+
+<div class="read-item">
+
+<span>03</span>
+
+<div>
+
+<h4>
+رابط واتساب للأعمال
+</h4>
+
+<p>
+استخدم رابط مباشر لتسهيل التواصل مع العملاء.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
